@@ -10,6 +10,9 @@ database/*.sqlite3
 # Uploads (user-generated files)
 uploads/*
 
+# Frontend (not needed)
+agency-os-frontend/
+
 # Environment variables
 .env
 .env.*
