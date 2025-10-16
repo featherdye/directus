@@ -1,0 +1,11 @@
+{
+  "author": "",
+  "description": "",
+  "directusTemplate": true,
+  "files": [
+    "src"
+  ],
+  "name": "directus-template-agency-os-template",
+  "templateName": "Agency OS Template",
+  "version": "1.0.0"
+}

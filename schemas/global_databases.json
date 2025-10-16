@@ -1,0 +1,96 @@
+{
+  "collection": "global_databases",
+  "options": {
+    "icon": "storage",
+    "note": "Org-wide database schemas and definitions"
+  },
+  "fields": [
+    {
+      "field": "name",
+      "type": "string",
+      "interface": "input",
+      "required": true,
+      "note": "Database name (e.g., 'Suppliers', 'Documents')"
+    },
+    {
+      "field": "slug",
+      "type": "string",
+      "interface": "input",
+      "unique": true,
+      "required": true,
+      "note": "URL-friendly identifier"
+    },
+    {
+      "field": "description",
+      "type": "text",
+      "interface": "textarea",
+      "note": "What this database stores"
+    },
+    {
+      "field": "schema_version",
+      "type": "integer",
+      "interface": "input",
+      "defaultValue": 1,
+      "note": "Schema version number for migrations"
+    },
+    {
+      "field": "schema_definition",
+      "type": "json",
+      "interface": "input-code",
+      "note": "JSON Schema defining columns and types"
+    },
+    {
+      "field": "icon",
+      "type": "string",
+      "interface": "input",
+      "note": "Material icon name for UI"
+    },
+    {
+      "field": "is_active",
+      "type": "boolean",
+      "interface": "boolean",
+      "defaultValue": true,
+      "note": "Whether this database is active"
+    },
+    {
+      "field": "access_scope",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "Organization", "value": "org" },
+          { "text": "Admin Only", "value": "admin" },
+          { "text": "Public", "value": "public" }
+        ]
+      },
+      "defaultValue": "org",
+      "note": "Who can access this database"
+    },
+    {
+      "field": "allow_project_writes",
+      "type": "boolean",
+      "interface": "boolean",
+      "defaultValue": false,
+      "note": "Allow projects to write to global rows"
+    },
+    {
+      "field": "migration_log",
+      "type": "json",
+      "interface": "input-code",
+      "note": "Array of schema changes/migrations"
+    },
+    {
+      "field": "row_count",
+      "type": "integer",
+      "interface": "input",
+      "defaultValue": 0,
+      "note": "Cached count of rows (updated on changes)"
+    },
+    {
+      "field": "tags",
+      "type": "json",
+      "interface": "tags",
+      "note": "Tags for categorization"
+    }
+  ]
+}

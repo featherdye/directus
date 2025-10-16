@@ -1,0 +1,98 @@
+{
+  "collection": "documents",
+  "options": {
+    "icon": "description",
+    "note": "Document registry and metadata"
+  },
+  "fields": [
+    {
+      "field": "title",
+      "type": "string",
+      "interface": "input",
+      "required": true,
+      "note": "Document title"
+    },
+    {
+      "field": "description",
+      "type": "text",
+      "interface": "textarea",
+      "note": "Document description"
+    },
+    {
+      "field": "file_id",
+      "type": "uuid",
+      "interface": "file",
+      "required": true,
+      "note": "Actual file (links to directus_files)"
+    },
+    {
+      "field": "category",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "Contract", "value": "contract" },
+          { "text": "Proposal", "value": "proposal" },
+          { "text": "Spec/Brief", "value": "spec" },
+          { "text": "Report", "value": "report" },
+          { "text": "Legal", "value": "legal" },
+          { "text": "Brand Asset", "value": "brand" },
+          { "text": "Other", "value": "other" }
+        ]
+      },
+      "note": "Document category"
+    },
+    {
+      "field": "project_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "note": "Related project"
+    },
+    {
+      "field": "company_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "note": "Related company"
+    },
+    {
+      "field": "version",
+      "type": "string",
+      "interface": "input",
+      "note": "Document version (e.g., v1.0, v2.1)"
+    },
+    {
+      "field": "status",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "Draft", "value": "draft" },
+          { "text": "Review", "value": "review" },
+          { "text": "Approved", "value": "approved" },
+          { "text": "Archived", "value": "archived" }
+        ]
+      },
+      "defaultValue": "draft",
+      "note": "Document status"
+    },
+    {
+      "field": "created_by_ai",
+      "type": "boolean",
+      "interface": "boolean",
+      "defaultValue": false,
+      "note": "Whether AI generated this document"
+    },
+    {
+      "field": "notes",
+      "type": "text",
+      "interface": "textarea",
+      "note": "Internal notes"
+    },
+    {
+      "field": "tags",
+      "type": "json",
+      "interface": "tags",
+      "note": "Tags"
+    }
+  ]
+}

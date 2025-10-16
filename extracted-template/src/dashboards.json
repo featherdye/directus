@@ -1,0 +1,32 @@
+[
+  {
+    "id": "0d85d827-a045-4dee-bcd3-d72d3a91cc52",
+    "name": "2. Sales Pipeline",
+    "icon": "point_of_sale",
+    "note": null,
+    "date_created": "2025-10-15T14:31:02.460Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b",
+    "color": "#6644FF",
+    "panels": null
+  },
+  {
+    "id": "d283dd34-6886-4cfd-b1c5-744320562acc",
+    "name": "1. My Dashboard",
+    "icon": "dashboard",
+    "note": "Shows the open tasks and sales activities for a selected user.",
+    "date_created": "2025-10-15T14:31:02.560Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b",
+    "color": "#D064AC",
+    "panels": null
+  },
+  {
+    "id": "ea9c9be7-dcb3-4351-8a05-0d30c150bb64",
+    "name": "3. Help Center Feedback",
+    "icon": "help_center",
+    "note": "Dashboard to analyze help center feedback.",
+    "date_created": "2025-10-15T14:31:02.664Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b",
+    "color": "#8196B0",
+    "panels": null
+  }
+]

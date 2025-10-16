@@ -1,0 +1,88 @@
+{
+  "collection": "opportunities",
+  "options": {
+    "icon": "trending_up",
+    "note": "Sales opportunities and deals"
+  },
+  "fields": [
+    {
+      "field": "title",
+      "type": "string",
+      "interface": "input",
+      "required": true,
+      "note": "Opportunity name"
+    },
+    {
+      "field": "company_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "note": "Related company"
+    },
+    {
+      "field": "client_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "note": "Primary contact"
+    },
+    {
+      "field": "value",
+      "type": "decimal",
+      "interface": "input",
+      "required": true,
+      "note": "Deal value (USD)"
+    },
+    {
+      "field": "stage",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "Lead", "value": "lead" },
+          { "text": "Qualified", "value": "qualified" },
+          { "text": "Proposal", "value": "proposal" },
+          { "text": "Negotiation", "value": "negotiation" },
+          { "text": "Closed Won", "value": "closed_won" },
+          { "text": "Closed Lost", "value": "closed_lost" }
+        ]
+      },
+      "defaultValue": "lead",
+      "note": "Sales stage"
+    },
+    {
+      "field": "probability",
+      "type": "integer",
+      "interface": "input",
+      "note": "Win probability (0-100%)"
+    },
+    {
+      "field": "expected_close_date",
+      "type": "date",
+      "interface": "datetime",
+      "note": "Expected close date"
+    },
+    {
+      "field": "actual_close_date",
+      "type": "date",
+      "interface": "datetime",
+      "note": "Actual close date"
+    },
+    {
+      "field": "description",
+      "type": "text",
+      "interface": "textarea",
+      "note": "Opportunity description"
+    },
+    {
+      "field": "notes",
+      "type": "text",
+      "interface": "textarea",
+      "note": "Internal notes"
+    },
+    {
+      "field": "tags",
+      "type": "json",
+      "interface": "tags",
+      "note": "Tags"
+    }
+  ]
+}

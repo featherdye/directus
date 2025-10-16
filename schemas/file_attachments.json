@@ -1,0 +1,97 @@
+{
+  "collection": "file_attachments",
+  "options": {
+    "icon": "attach_file",
+    "note": "Multi-parent file attachment system"
+  },
+  "fields": [
+    {
+      "field": "file_id",
+      "type": "uuid",
+      "interface": "file",
+      "required": true,
+      "note": "Reference to directus_files"
+    },
+    {
+      "field": "parent_collection",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "Organization", "value": "organizations" },
+          { "text": "Project", "value": "os_projects" },
+          { "text": "Task", "value": "os_tasks" },
+          { "text": "Database Row", "value": "database_rows" },
+          { "text": "Global Database", "value": "global_databases" },
+          { "text": "Deal", "value": "os_deals" },
+          { "text": "Contact", "value": "contacts" },
+          { "text": "Job", "value": "jobs" }
+        ]
+      },
+      "required": true,
+      "note": "Parent collection type"
+    },
+    {
+      "field": "parent_id",
+      "type": "uuid",
+      "interface": "input",
+      "required": true,
+      "note": "Parent record ID"
+    },
+    {
+      "field": "field_name",
+      "type": "string",
+      "interface": "input",
+      "note": "Specific field this attaches to (for db_cell mode)"
+    },
+    {
+      "field": "role",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "Source", "value": "source" },
+          { "text": "Output", "value": "output" },
+          { "text": "Evidence", "value": "evidence" },
+          { "text": "Reference", "value": "reference" },
+          { "text": "Attachment", "value": "attachment" }
+        ]
+      },
+      "defaultValue": "attachment",
+      "note": "File role/purpose"
+    },
+    {
+      "field": "display_order",
+      "type": "integer",
+      "interface": "input",
+      "defaultValue": 0,
+      "note": "Sort order for display"
+    },
+    {
+      "field": "is_primary",
+      "type": "boolean",
+      "interface": "boolean",
+      "defaultValue": false,
+      "note": "Primary/featured file flag"
+    },
+    {
+      "field": "uploaded_by_ai",
+      "type": "boolean",
+      "interface": "boolean",
+      "defaultValue": false,
+      "note": "Whether AI generated/uploaded this file"
+    },
+    {
+      "field": "description",
+      "type": "text",
+      "interface": "textarea",
+      "note": "File description or context"
+    },
+    {
+      "field": "tags",
+      "type": "json",
+      "interface": "tags",
+      "note": "Searchable tags"
+    }
+  ]
+}

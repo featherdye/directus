@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "Brand Research & Competitive Analysis",
+    "slug": "brand-research",
+    "description": "Comprehensive brand research workflow using automated competitor analysis from Instagram, LinkedIn, and web sources.",
+    "category": "client_work",
+    "icon": "search",
+    "status": "active",
+    "owner_id": null,
+    "is_public": 1,
+    "usage_count": 0,
+    "notes": null,
+    "tags": null
+  }
+]

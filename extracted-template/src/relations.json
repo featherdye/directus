@@ -1,0 +1,703 @@
+[
+  {
+    "collection": "clients",
+    "field": "company_id",
+    "related_collection": "companies",
+    "schema": {
+      "table": "clients",
+      "column": "company_id",
+      "foreign_key_table": "companies",
+      "foreign_key_column": "id",
+      "on_update": "NO ACTION",
+      "on_delete": "NO ACTION",
+      "constraint_name": null
+    },
+    "meta": {
+      "many_collection": "clients",
+      "many_field": "company_id",
+      "one_collection": "companies",
+      "one_field": null,
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": null,
+      "sort_field": null,
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "opportunities",
+    "field": "client_id",
+    "related_collection": "clients",
+    "schema": {
+      "table": "opportunities",
+      "column": "client_id",
+      "foreign_key_table": "clients",
+      "foreign_key_column": "id",
+      "on_update": "NO ACTION",
+      "on_delete": "NO ACTION",
+      "constraint_name": null
+    },
+    "meta": {
+      "many_collection": "opportunities",
+      "many_field": "client_id",
+      "one_collection": "clients",
+      "one_field": null,
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": null,
+      "sort_field": null,
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "opportunities",
+    "field": "company_id",
+    "related_collection": "companies",
+    "schema": {
+      "table": "opportunities",
+      "column": "company_id",
+      "foreign_key_table": "companies",
+      "foreign_key_column": "id",
+      "on_update": "NO ACTION",
+      "on_delete": "NO ACTION",
+      "constraint_name": null
+    },
+    "meta": {
+      "many_collection": "opportunities",
+      "many_field": "company_id",
+      "one_collection": "companies",
+      "one_field": null,
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": null,
+      "sort_field": null,
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "task_dependencies",
+    "field": "depends_on_task_id",
+    "related_collection": "tasks",
+    "schema": {
+      "table": "task_dependencies",
+      "column": "depends_on_task_id",
+      "foreign_key_table": "tasks",
+      "foreign_key_column": "id",
+      "on_update": "NO ACTION",
+      "on_delete": "NO ACTION",
+      "constraint_name": null
+    },
+    "meta": {
+      "many_collection": "task_dependencies",
+      "many_field": "depends_on_task_id",
+      "one_collection": "tasks",
+      "one_field": null,
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": null,
+      "sort_field": null,
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "task_dependencies",
+    "field": "task_id",
+    "related_collection": "tasks",
+    "schema": {
+      "table": "task_dependencies",
+      "column": "task_id",
+      "foreign_key_table": "tasks",
+      "foreign_key_column": "id",
+      "on_update": "NO ACTION",
+      "on_delete": "NO ACTION",
+      "constraint_name": null
+    },
+    "meta": {
+      "many_collection": "task_dependencies",
+      "many_field": "task_id",
+      "one_collection": "tasks",
+      "one_field": null,
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": null,
+      "sort_field": null,
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "task_executions",
+    "field": "job_id",
+    "related_collection": "jobs",
+    "schema": {
+      "table": "task_executions",
+      "column": "job_id",
+      "foreign_key_table": "jobs",
+      "foreign_key_column": "id",
+      "on_update": "NO ACTION",
+      "on_delete": "NO ACTION",
+      "constraint_name": null
+    },
+    "meta": {
+      "many_collection": "task_executions",
+      "many_field": "job_id",
+      "one_collection": "jobs",
+      "one_field": null,
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": null,
+      "sort_field": null,
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "task_executions",
+    "field": "task_id",
+    "related_collection": "tasks",
+    "schema": {
+      "table": "task_executions",
+      "column": "task_id",
+      "foreign_key_table": "tasks",
+      "foreign_key_column": "id",
+      "on_update": "NO ACTION",
+      "on_delete": "NO ACTION",
+      "constraint_name": null
+    },
+    "meta": {
+      "many_collection": "task_executions",
+      "many_field": "task_id",
+      "one_collection": "tasks",
+      "one_field": null,
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": null,
+      "sort_field": null,
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "jobs",
+    "field": "template_id",
+    "related_collection": "template_versions",
+    "schema": {
+      "table": "jobs",
+      "column": "template_id",
+      "foreign_key_table": "template_versions",
+      "foreign_key_column": "id",
+      "on_update": "NO ACTION",
+      "on_delete": "NO ACTION",
+      "constraint_name": null
+    },
+    "meta": {
+      "many_collection": "jobs",
+      "many_field": "template_id",
+      "one_collection": "template_versions",
+      "one_field": null,
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": null,
+      "sort_field": null,
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "jobs",
+    "field": "task_id",
+    "related_collection": "tasks",
+    "schema": {
+      "table": "jobs",
+      "column": "task_id",
+      "foreign_key_table": "tasks",
+      "foreign_key_column": "id",
+      "on_update": "NO ACTION",
+      "on_delete": "NO ACTION",
+      "constraint_name": null
+    },
+    "meta": {
+      "many_collection": "jobs",
+      "many_field": "task_id",
+      "one_collection": "tasks",
+      "one_field": null,
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": null,
+      "sort_field": null,
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "template_versions",
+    "field": "template_id",
+    "related_collection": "templates",
+    "schema": {
+      "table": "template_versions",
+      "column": "template_id",
+      "foreign_key_table": "templates",
+      "foreign_key_column": "id",
+      "on_update": "NO ACTION",
+      "on_delete": "NO ACTION",
+      "constraint_name": null
+    },
+    "meta": {
+      "many_collection": "template_versions",
+      "many_field": "template_id",
+      "one_collection": "templates",
+      "one_field": "versions",
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": null,
+      "sort_field": null,
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "artifact_approvals",
+    "field": "task_id",
+    "related_collection": "tasks",
+    "schema": {
+      "table": "artifact_approvals",
+      "column": "task_id",
+      "foreign_key_table": "tasks",
+      "foreign_key_column": "id",
+      "on_update": "NO ACTION",
+      "on_delete": "NO ACTION",
+      "constraint_name": null
+    },
+    "meta": {
+      "many_collection": "artifact_approvals",
+      "many_field": "task_id",
+      "one_collection": "tasks",
+      "one_field": null,
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": null,
+      "sort_field": null,
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "artifact_approvals",
+    "field": "project_id",
+    "related_collection": "projects",
+    "schema": {
+      "table": "artifact_approvals",
+      "column": "project_id",
+      "foreign_key_table": "projects",
+      "foreign_key_column": "id",
+      "on_update": "NO ACTION",
+      "on_delete": "NO ACTION",
+      "constraint_name": null
+    },
+    "meta": {
+      "many_collection": "artifact_approvals",
+      "many_field": "project_id",
+      "one_collection": "projects",
+      "one_field": null,
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": null,
+      "sort_field": null,
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "artifact_approvals",
+    "field": "artifact_version_id",
+    "related_collection": "artifact_versions",
+    "schema": {
+      "table": "artifact_approvals",
+      "column": "artifact_version_id",
+      "foreign_key_table": "artifact_versions",
+      "foreign_key_column": "id",
+      "on_update": "NO ACTION",
+      "on_delete": "NO ACTION",
+      "constraint_name": null
+    },
+    "meta": {
+      "many_collection": "artifact_approvals",
+      "many_field": "artifact_version_id",
+      "one_collection": "artifact_versions",
+      "one_field": null,
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": null,
+      "sort_field": null,
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "documents",
+    "field": "artifact_version_id",
+    "related_collection": "artifact_versions",
+    "schema": {
+      "table": "documents",
+      "column": "artifact_version_id",
+      "foreign_key_table": "artifact_versions",
+      "foreign_key_column": "id",
+      "on_update": "NO ACTION",
+      "on_delete": "NO ACTION",
+      "constraint_name": null
+    },
+    "meta": {
+      "many_collection": "documents",
+      "many_field": "artifact_version_id",
+      "one_collection": "artifact_versions",
+      "one_field": null,
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": null,
+      "sort_field": null,
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "documents",
+    "field": "company_id",
+    "related_collection": "companies",
+    "schema": {
+      "table": "documents",
+      "column": "company_id",
+      "foreign_key_table": "companies",
+      "foreign_key_column": "id",
+      "on_update": "NO ACTION",
+      "on_delete": "NO ACTION",
+      "constraint_name": null
+    },
+    "meta": {
+      "many_collection": "documents",
+      "many_field": "company_id",
+      "one_collection": "companies",
+      "one_field": null,
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": null,
+      "sort_field": null,
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "artifact_files",
+    "field": "directus_files_id",
+    "related_collection": "directus_files",
+    "schema": {
+      "table": "artifact_files",
+      "column": "directus_files_id",
+      "foreign_key_table": "directus_files",
+      "foreign_key_column": "id",
+      "on_update": "NO ACTION",
+      "on_delete": "NO ACTION",
+      "constraint_name": null
+    },
+    "meta": {
+      "many_collection": "artifact_files",
+      "many_field": "directus_files_id",
+      "one_collection": "directus_files",
+      "one_field": null,
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": null,
+      "sort_field": null,
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "artifact_files",
+    "field": "artifact_version_id",
+    "related_collection": "artifact_versions",
+    "schema": {
+      "table": "artifact_files",
+      "column": "artifact_version_id",
+      "foreign_key_table": "artifact_versions",
+      "foreign_key_column": "id",
+      "on_update": "NO ACTION",
+      "on_delete": "NO ACTION",
+      "constraint_name": null
+    },
+    "meta": {
+      "many_collection": "artifact_files",
+      "many_field": "artifact_version_id",
+      "one_collection": "artifact_versions",
+      "one_field": "files",
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": "directus_files_id",
+      "sort_field": "sort",
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "task_artifacts",
+    "field": "artifact_version_id",
+    "related_collection": "artifact_versions",
+    "schema": {
+      "table": "task_artifacts",
+      "column": "artifact_version_id",
+      "foreign_key_table": "artifact_versions",
+      "foreign_key_column": "id",
+      "on_update": "NO ACTION",
+      "on_delete": "NO ACTION",
+      "constraint_name": null
+    },
+    "meta": {
+      "many_collection": "task_artifacts",
+      "many_field": "artifact_version_id",
+      "one_collection": "artifact_versions",
+      "one_field": null,
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": null,
+      "sort_field": null,
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "task_artifacts",
+    "field": "task_id",
+    "related_collection": "tasks",
+    "schema": {
+      "table": "task_artifacts",
+      "column": "task_id",
+      "foreign_key_table": "tasks",
+      "foreign_key_column": "id",
+      "on_update": "NO ACTION",
+      "on_delete": "NO ACTION",
+      "constraint_name": null
+    },
+    "meta": {
+      "many_collection": "task_artifacts",
+      "many_field": "task_id",
+      "one_collection": "tasks",
+      "one_field": "artifacts",
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": "artifact_version_id",
+      "sort_field": "sort",
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "artifact_versions",
+    "field": "primary_file_id",
+    "related_collection": "directus_files",
+    "schema": {
+      "table": "artifact_versions",
+      "column": "primary_file_id",
+      "foreign_key_table": "directus_files",
+      "foreign_key_column": "id",
+      "on_update": "NO ACTION",
+      "on_delete": "NO ACTION",
+      "constraint_name": null
+    },
+    "meta": {
+      "many_collection": "artifact_versions",
+      "many_field": "primary_file_id",
+      "one_collection": "directus_files",
+      "one_field": null,
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": null,
+      "sort_field": null,
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "artifact_versions",
+    "field": "execution_id",
+    "related_collection": "task_executions",
+    "schema": {
+      "table": "artifact_versions",
+      "column": "execution_id",
+      "foreign_key_table": "task_executions",
+      "foreign_key_column": "id",
+      "on_update": "NO ACTION",
+      "on_delete": "NO ACTION",
+      "constraint_name": null
+    },
+    "meta": {
+      "many_collection": "artifact_versions",
+      "many_field": "execution_id",
+      "one_collection": "task_executions",
+      "one_field": null,
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": null,
+      "sort_field": null,
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "artifact_versions",
+    "field": "source_task_id",
+    "related_collection": "tasks",
+    "schema": {
+      "table": "artifact_versions",
+      "column": "source_task_id",
+      "foreign_key_table": "tasks",
+      "foreign_key_column": "id",
+      "on_update": "NO ACTION",
+      "on_delete": "NO ACTION",
+      "constraint_name": null
+    },
+    "meta": {
+      "many_collection": "artifact_versions",
+      "many_field": "source_task_id",
+      "one_collection": "tasks",
+      "one_field": null,
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": null,
+      "sort_field": null,
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "artifact_versions",
+    "field": "project_id",
+    "related_collection": "projects",
+    "schema": {
+      "table": "artifact_versions",
+      "column": "project_id",
+      "foreign_key_table": "projects",
+      "foreign_key_column": "id",
+      "on_update": "NO ACTION",
+      "on_delete": "NO ACTION",
+      "constraint_name": null
+    },
+    "meta": {
+      "many_collection": "artifact_versions",
+      "many_field": "project_id",
+      "one_collection": "projects",
+      "one_field": null,
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": null,
+      "sort_field": null,
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "projects",
+    "field": "template_id",
+    "related_collection": "template_versions",
+    "schema": {
+      "table": "projects",
+      "column": "template_id",
+      "foreign_key_table": "template_versions",
+      "foreign_key_column": "id",
+      "on_update": "NO ACTION",
+      "on_delete": "NO ACTION",
+      "constraint_name": null
+    },
+    "meta": {
+      "many_collection": "projects",
+      "many_field": "template_id",
+      "one_collection": "template_versions",
+      "one_field": null,
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": null,
+      "sort_field": null,
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "projects",
+    "field": "opportunity_id",
+    "related_collection": "opportunities",
+    "schema": {
+      "table": "projects",
+      "column": "opportunity_id",
+      "foreign_key_table": "opportunities",
+      "foreign_key_column": "id",
+      "on_update": "NO ACTION",
+      "on_delete": "NO ACTION",
+      "constraint_name": null
+    },
+    "meta": {
+      "many_collection": "projects",
+      "many_field": "opportunity_id",
+      "one_collection": "opportunities",
+      "one_field": null,
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": null,
+      "sort_field": null,
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "projects",
+    "field": "company_id",
+    "related_collection": "companies",
+    "schema": {
+      "table": "projects",
+      "column": "company_id",
+      "foreign_key_table": "companies",
+      "foreign_key_column": "id",
+      "on_update": "NO ACTION",
+      "on_delete": "NO ACTION",
+      "constraint_name": null
+    },
+    "meta": {
+      "many_collection": "projects",
+      "many_field": "company_id",
+      "one_collection": "companies",
+      "one_field": null,
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": null,
+      "sort_field": null,
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "tasks",
+    "field": "project_id",
+    "related_collection": "projects",
+    "schema": null,
+    "meta": {
+      "many_collection": "tasks",
+      "many_field": "project_id",
+      "one_collection": "projects",
+      "one_field": "tasks",
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": null,
+      "sort_field": null,
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "documents",
+    "field": "project_id",
+    "related_collection": "projects",
+    "schema": null,
+    "meta": {
+      "many_collection": "documents",
+      "many_field": "project_id",
+      "one_collection": "projects",
+      "one_field": "documents",
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": null,
+      "sort_field": null,
+      "one_deselect_action": "nullify"
+    }
+  },
+  {
+    "collection": "jobs",
+    "field": "project_id",
+    "related_collection": "projects",
+    "schema": null,
+    "meta": {
+      "many_collection": "jobs",
+      "many_field": "project_id",
+      "one_collection": "projects",
+      "one_field": "jobs",
+      "one_collection_field": null,
+      "one_allowed_collections": null,
+      "junction_field": null,
+      "sort_field": null,
+      "one_deselect_action": "nullify"
+    }
+  }
+]

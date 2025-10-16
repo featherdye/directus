@@ -1,0 +1,121 @@
+{
+  "collection": "approvals",
+  "options": {
+    "icon": "approval",
+    "note": "Maker-checker approval workflow"
+  },
+  "fields": [
+    {
+      "field": "approval_type",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "Task Completion", "value": "task_completion" },
+          { "text": "Template Publish", "value": "template_publish" },
+          { "text": "Project State Change", "value": "project_state" },
+          { "text": "Database Schema Change", "value": "schema_change" },
+          { "text": "AI Output Review", "value": "ai_output" },
+          { "text": "Custom", "value": "custom" }
+        ]
+      },
+      "required": true,
+      "note": "Type of approval required"
+    },
+    {
+      "field": "status",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "Pending", "value": "pending" },
+          { "text": "Approved", "value": "approved" },
+          { "text": "Rejected", "value": "rejected" },
+          { "text": "Cancelled", "value": "cancelled" }
+        ]
+      },
+      "defaultValue": "pending",
+      "required": true,
+      "note": "Approval status"
+    },
+    {
+      "field": "requested_by",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "required": true,
+      "note": "User who requested approval (links to directus_users)"
+    },
+    {
+      "field": "approver",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "note": "User assigned to approve (links to directus_users)"
+    },
+    {
+      "field": "approved_by",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "note": "User who actually approved/rejected (links to directus_users)"
+    },
+    {
+      "field": "related_collection",
+      "type": "string",
+      "interface": "input",
+      "note": "Collection name of related item"
+    },
+    {
+      "field": "related_id",
+      "type": "uuid",
+      "interface": "input",
+      "note": "ID of related item"
+    },
+    {
+      "field": "requested_at",
+      "type": "timestamp",
+      "interface": "datetime",
+      "note": "When approval was requested"
+    },
+    {
+      "field": "responded_at",
+      "type": "timestamp",
+      "interface": "datetime",
+      "note": "When approver responded"
+    },
+    {
+      "field": "due_date",
+      "type": "timestamp",
+      "interface": "datetime",
+      "note": "Approval deadline"
+    },
+    {
+      "field": "request_message",
+      "type": "text",
+      "interface": "textarea",
+      "note": "Context/reason for approval request"
+    },
+    {
+      "field": "response_message",
+      "type": "text",
+      "interface": "textarea",
+      "note": "Approver's feedback or reason for decision"
+    },
+    {
+      "field": "before_data",
+      "type": "json",
+      "interface": "input-code",
+      "note": "State before change (for audit)"
+    },
+    {
+      "field": "after_data",
+      "type": "json",
+      "interface": "input-code",
+      "note": "Proposed state after change"
+    },
+    {
+      "field": "auto_approve_rule",
+      "type": "string",
+      "interface": "input",
+      "note": "Rule ID if auto-approved"
+    }
+  ]
+}

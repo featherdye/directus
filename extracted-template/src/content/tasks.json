@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "title": "Task 1",
+    "description": null,
+    "project_id": "4",
+    "status": "new",
+    "assigned_to": null,
+    "execution_type": "human",
+    "due_date": null,
+    "sla_minutes": null,
+    "priority": "medium",
+    "output": null,
+    "notes": null,
+    "tags": null
+  }
+]

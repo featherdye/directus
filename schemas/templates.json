@@ -1,0 +1,97 @@
+{
+  "collection": "templates",
+  "options": {
+    "icon": "widgets",
+    "note": "Project templates - parent collection for versioned workflows"
+  },
+  "fields": [
+    {
+      "field": "name",
+      "type": "string",
+      "interface": "input",
+      "required": true,
+      "note": "Template name"
+    },
+    {
+      "field": "slug",
+      "type": "string",
+      "interface": "input",
+      "unique": true,
+      "note": "URL-friendly identifier"
+    },
+    {
+      "field": "description",
+      "type": "text",
+      "interface": "textarea",
+      "note": "Template description"
+    },
+    {
+      "field": "category",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "Client Work", "value": "client_work" },
+          { "text": "Internal Project", "value": "internal_project" },
+          { "text": "Sales Process", "value": "sales_process" },
+          { "text": "Operations", "value": "operations" },
+          { "text": "Custom", "value": "custom" }
+        ]
+      },
+      "note": "Template category"
+    },
+    {
+      "field": "icon",
+      "type": "string",
+      "interface": "input",
+      "note": "Material icon name for UI"
+    },
+    {
+      "field": "status",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "Draft", "value": "draft" },
+          { "text": "Active", "value": "active" },
+          { "text": "Deprecated", "value": "deprecated" },
+          { "text": "Archived", "value": "archived" }
+        ]
+      },
+      "defaultValue": "draft",
+      "note": "Template lifecycle status"
+    },
+    {
+      "field": "owner_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "note": "Template owner (links to directus_users)"
+    },
+    {
+      "field": "is_public",
+      "type": "boolean",
+      "interface": "boolean",
+      "defaultValue": false,
+      "note": "Whether template is available to all users"
+    },
+    {
+      "field": "usage_count",
+      "type": "integer",
+      "interface": "input",
+      "defaultValue": 0,
+      "note": "Total projects created from this template"
+    },
+    {
+      "field": "notes",
+      "type": "text",
+      "interface": "textarea",
+      "note": "Internal notes"
+    },
+    {
+      "field": "tags",
+      "type": "json",
+      "interface": "tags",
+      "note": "Tags"
+    }
+  ]
+}

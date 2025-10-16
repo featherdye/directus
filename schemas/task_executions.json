@@ -1,0 +1,185 @@
+{
+  "collection": "task_executions",
+  "options": {
+    "icon": "analytics",
+    "note": "AI task execution tracking with quality metrics and SLA"
+  },
+  "fields": [
+    {
+      "field": "task_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "required": true,
+      "note": "Related task (links to os_tasks)"
+    },
+    {
+      "field": "job_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "note": "Related automation job (links to jobs)"
+    },
+    {
+      "field": "execution_type",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "AI Single-Step", "value": "ai_single" },
+          { "text": "AI Multi-Step Playbook", "value": "ai_multi" },
+          { "text": "Human Execution", "value": "human" },
+          { "text": "Hybrid (AI + Human)", "value": "hybrid" }
+        ]
+      },
+      "required": true,
+      "note": "How task was executed"
+    },
+    {
+      "field": "template_version",
+      "type": "string",
+      "interface": "input",
+      "note": "Template/prompt version used"
+    },
+    {
+      "field": "started_at",
+      "type": "timestamp",
+      "interface": "datetime",
+      "required": true,
+      "note": "Execution start time"
+    },
+    {
+      "field": "completed_at",
+      "type": "timestamp",
+      "interface": "datetime",
+      "note": "Execution completion time"
+    },
+    {
+      "field": "duration_seconds",
+      "type": "integer",
+      "interface": "input",
+      "note": "Total execution time in seconds"
+    },
+    {
+      "field": "sla_target_seconds",
+      "type": "integer",
+      "interface": "input",
+      "note": "Target completion time (e.g., 120 for 2 minutes)"
+    },
+    {
+      "field": "met_sla",
+      "type": "boolean",
+      "interface": "boolean",
+      "note": "Whether execution met SLA target"
+    },
+    {
+      "field": "accuracy_band",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "Exact Match", "value": "exact" },
+          { "text": "High (95%+)", "value": "high" },
+          { "text": "Medium (80-95%)", "value": "medium" },
+          { "text": "Low (<80%)", "value": "low" },
+          { "text": "Failed", "value": "failed" }
+        ]
+      },
+      "note": "Quality band for this execution"
+    },
+    {
+      "field": "acceptance_status",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "Accepted First Pass", "value": "accepted_first" },
+          { "text": "Accepted After Edits", "value": "accepted_edited" },
+          { "text": "Rejected", "value": "rejected" },
+          { "text": "Pending Review", "value": "pending" }
+        ]
+      },
+      "defaultValue": "pending",
+      "note": "Human review outcome"
+    },
+    {
+      "field": "correction_count",
+      "type": "integer",
+      "interface": "input",
+      "defaultValue": 0,
+      "note": "Number of corrections made"
+    },
+    {
+      "field": "corrections",
+      "type": "json",
+      "interface": "input-code",
+      "note": "Array of corrections with field, old value, new value"
+    },
+    {
+      "field": "checker_user_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "note": "User who reviewed/checked output (links to directus_users)"
+    },
+    {
+      "field": "escalated",
+      "type": "boolean",
+      "interface": "boolean",
+      "defaultValue": false,
+      "note": "Whether this was escalated to human"
+    },
+    {
+      "field": "escalation_reason",
+      "type": "text",
+      "interface": "textarea",
+      "note": "Why this was escalated"
+    },
+    {
+      "field": "automation_percentage",
+      "type": "decimal",
+      "interface": "input",
+      "note": "% of steps automated (for multi-step playbooks)"
+    },
+    {
+      "field": "cost_usd",
+      "type": "decimal",
+      "interface": "input",
+      "note": "AI API cost for this execution"
+    },
+    {
+      "field": "tokens_used",
+      "type": "integer",
+      "interface": "input",
+      "note": "Total tokens consumed"
+    },
+    {
+      "field": "model_used",
+      "type": "string",
+      "interface": "input",
+      "note": "AI model identifier (e.g., gpt-4, claude-3-sonnet)"
+    },
+    {
+      "field": "feedback_score",
+      "type": "integer",
+      "interface": "input",
+      "note": "User rating 1-5 of output quality"
+    },
+    {
+      "field": "feedback_text",
+      "type": "text",
+      "interface": "textarea",
+      "note": "Qualitative feedback from checker"
+    },
+    {
+      "field": "training_data",
+      "type": "boolean",
+      "interface": "boolean",
+      "defaultValue": true,
+      "note": "Use this execution for model fine-tuning"
+    },
+    {
+      "field": "tags",
+      "type": "json",
+      "interface": "tags",
+      "note": "Tags for filtering and analysis"
+    }
+  ]
+}

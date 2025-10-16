@@ -1,0 +1,6 @@
+{
+  "timestamp": "'$(date -u +%Y-%m-%dT%H:%M:%SZ)'",
+  "collections": $(cat collections.json),
+  "fields": $(cat fields.json),
+  "relations": $(cat relations.json)
+}

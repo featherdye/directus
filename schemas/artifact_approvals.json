@@ -1,0 +1,84 @@
+{
+  "collection": "artifact_approvals",
+  "options": {
+    "icon": "check_circle",
+    "note": "Audit log of artifact approval/rejection actions"
+  },
+  "fields": [
+    {
+      "field": "artifact_version_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "required": true,
+      "note": "Artifact version being approved/rejected (links to artifact_versions)"
+    },
+    {
+      "field": "project_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "required": true,
+      "note": "Project context (links to projects)"
+    },
+    {
+      "field": "task_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "note": "Task that generated this artifact (links to tasks)"
+    },
+    {
+      "field": "action",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "Approve", "value": "approve" },
+          { "text": "Reject", "value": "reject" },
+          { "text": "Supersede", "value": "supersede" },
+          { "text": "Request Changes", "value": "request_changes" }
+        ]
+      },
+      "required": true,
+      "note": "Type of approval action"
+    },
+    {
+      "field": "actor_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "required": true,
+      "note": "User who performed action (links to directus_users)"
+    },
+    {
+      "field": "actor_type",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "Human", "value": "human" },
+          { "text": "AI", "value": "ai" },
+          { "text": "System", "value": "system" },
+          { "text": "Automated Rule", "value": "rule" }
+        ]
+      },
+      "defaultValue": "human",
+      "note": "Type of actor"
+    },
+    {
+      "field": "reason",
+      "type": "text",
+      "interface": "textarea",
+      "note": "Reason for approval/rejection (learning data for AI)"
+    },
+    {
+      "field": "feedback",
+      "type": "json",
+      "interface": "input-code",
+      "note": "Structured feedback (e.g., {issues: ['color too dark', 'logo unclear']})"
+    },
+    {
+      "field": "notes",
+      "type": "text",
+      "interface": "textarea",
+      "note": "Internal notes"
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "collection": "companies",
+  "options": {
+    "icon": "business",
+    "note": "Companies and organizations (global)"
+  },
+  "fields": [
+    {
+      "field": "name",
+      "type": "string",
+      "interface": "input",
+      "required": true,
+      "note": "Company name"
+    },
+    {
+      "field": "slug",
+      "type": "string",
+      "interface": "input",
+      "unique": true,
+      "note": "URL-friendly identifier"
+    },
+    {
+      "field": "legal_name",
+      "type": "string",
+      "interface": "input",
+      "note": "Official legal name"
+    },
+    {
+      "field": "type",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "Client", "value": "client" },
+          { "text": "Supplier", "value": "supplier" },
+          { "text": "Partner", "value": "partner" },
+          { "text": "Competitor", "value": "competitor" },
+          { "text": "Other", "value": "other" }
+        ]
+      },
+      "note": "Company type/role"
+    },
+    {
+      "field": "industry",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "Technology", "value": "technology" },
+          { "text": "Finance", "value": "finance" },
+          { "text": "Healthcare", "value": "healthcare" },
+          { "text": "Legal", "value": "legal" },
+          { "text": "Marketing/Agency", "value": "marketing" },
+          { "text": "Retail", "value": "retail" },
+          { "text": "Manufacturing", "value": "manufacturing" },
+          { "text": "Education", "value": "education" },
+          { "text": "Real Estate", "value": "real_estate" },
+          { "text": "Other", "value": "other" }
+        ]
+      },
+      "note": "Industry sector"
+    },
+    {
+      "field": "website",
+      "type": "string",
+      "interface": "input",
+      "note": "Company website"
+    },
+    {
+      "field": "email",
+      "type": "string",
+      "interface": "input",
+      "note": "General contact email"
+    },
+    {
+      "field": "phone",
+      "type": "string",
+      "interface": "input",
+      "note": "Main phone number"
+    },
+    {
+      "field": "address",
+      "type": "text",
+      "interface": "textarea",
+      "note": "Full address"
+    },
+    {
+      "field": "city",
+      "type": "string",
+      "interface": "input",
+      "note": "City"
+    },
+    {
+      "field": "state",
+      "type": "string",
+      "interface": "input",
+      "note": "State/Province"
+    },
+    {
+      "field": "postal_code",
+      "type": "string",
+      "interface": "input",
+      "note": "ZIP/Postal code"
+    },
+    {
+      "field": "country",
+      "type": "string",
+      "interface": "input",
+      "note": "Country"
+    },
+    {
+      "field": "employee_count",
+      "type": "integer",
+      "interface": "input",
+      "note": "Number of employees"
+    },
+    {
+      "field": "annual_revenue",
+      "type": "decimal",
+      "interface": "input",
+      "note": "Annual revenue (USD)"
+    },
+    {
+      "field": "logo",
+      "type": "uuid",
+      "interface": "file",
+      "note": "Company logo"
+    },
+    {
+      "field": "status",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "Active", "value": "active" },
+          { "text": "Inactive", "value": "inactive" },
+          { "text": "Prospect", "value": "prospect" }
+        ]
+      },
+      "defaultValue": "active",
+      "note": "Company status"
+    },
+    {
+      "field": "notes",
+      "type": "text",
+      "interface": "textarea",
+      "note": "Internal notes"
+    },
+    {
+      "field": "tags",
+      "type": "json",
+      "interface": "tags",
+      "note": "Tags for categorization"
+    }
+  ]
+}

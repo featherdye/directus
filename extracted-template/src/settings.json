@@ -1,0 +1,90 @@
+{
+  "id": 1,
+  "project_name": "Mellow Workspace",
+  "project_url": null,
+  "project_color": "#E35169",
+  "project_logo": "54168623-3a45-4b85-8fcb-be587ef6f290",
+  "public_foreground": null,
+  "public_background": null,
+  "public_note": null,
+  "auth_login_attempts": 25,
+  "auth_password_policy": null,
+  "storage_asset_transform": "all",
+  "storage_asset_presets": null,
+  "custom_css": null,
+  "storage_default_folder": null,
+  "basemaps": null,
+  "mapbox_key": null,
+  "module_bar": [
+    {
+      "type": "module",
+      "id": "content",
+      "enabled": true
+    },
+    {
+      "type": "module",
+      "id": "visual",
+      "enabled": false
+    },
+    {
+      "type": "module",
+      "id": "users",
+      "enabled": true
+    },
+    {
+      "type": "module",
+      "id": "files",
+      "enabled": true
+    },
+    {
+      "type": "module",
+      "id": "insights",
+      "enabled": false
+    },
+    {
+      "type": "module",
+      "id": "settings",
+      "enabled": true,
+      "locked": true
+    },
+    {
+      "type": "module",
+      "id": "global-search",
+      "enabled": true
+    }
+  ],
+  "project_descriptor": null,
+  "default_language": "en-US",
+  "custom_aspect_ratios": null,
+  "public_favicon": "452faf32-2ece-47c9-bb84-aa83aa337a4b",
+  "default_appearance": "light",
+  "default_theme_light": "Directus Minimal",
+  "theme_light_overrides": {
+    "borderRadius": "2px",
+    "fonts": {
+      "display": {
+        "fontFamily": "Inter",
+        "fontWeight": "400"
+      }
+    },
+    "background": "#f8f7f4",
+    "borderColor": "#E4E4E7"
+  },
+  "default_theme_dark": "Directus Default",
+  "theme_dark_overrides": null,
+  "report_error_url": null,
+  "report_bug_url": null,
+  "report_feature_url": null,
+  "public_registration": true,
+  "public_registration_verify_email": true,
+  "public_registration_role": null,
+  "public_registration_email_filter": null,
+  "visual_editor_urls": null,
+  "accepted_terms": true,
+  "project_id": "0199e831-24fc-716b-9377-9efb48606682",
+  "mcp_enabled": false,
+  "mcp_allow_deletes": false,
+  "mcp_prompts_collection": null,
+  "mcp_system_prompt_enabled": true,
+  "mcp_system_prompt": null
+}

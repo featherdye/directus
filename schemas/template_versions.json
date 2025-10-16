@@ -1,0 +1,119 @@
+{
+  "collection": "template_versions",
+  "options": {
+    "icon": "history",
+    "note": "Immutable template versions with changelog"
+  },
+  "fields": [
+    {
+      "field": "template_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "required": true,
+      "note": "Parent template (links to templates)"
+    },
+    {
+      "field": "version_number",
+      "type": "string",
+      "interface": "input",
+      "required": true,
+      "note": "Semantic version (e.g., 1.0.0, 1.1.0, 2.0.0)"
+    },
+    {
+      "field": "status",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "Draft", "value": "draft" },
+          { "text": "Published", "value": "published" },
+          { "text": "Deprecated", "value": "deprecated" },
+          { "text": "Archived", "value": "archived" }
+        ]
+      },
+      "defaultValue": "draft",
+      "note": "Version lifecycle status"
+    },
+    {
+      "field": "is_latest",
+      "type": "boolean",
+      "interface": "boolean",
+      "defaultValue": false,
+      "note": "Flag for current recommended version"
+    },
+    {
+      "field": "published_at",
+      "type": "timestamp",
+      "interface": "datetime",
+      "note": "When this version was published"
+    },
+    {
+      "field": "published_by",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "note": "User who published (links to directus_users)"
+    },
+    {
+      "field": "deprecated_at",
+      "type": "timestamp",
+      "interface": "datetime",
+      "note": "When this version was deprecated"
+    },
+    {
+      "field": "changelog",
+      "type": "text",
+      "interface": "wysiwyg",
+      "note": "What changed in this version"
+    },
+    {
+      "field": "breaking_changes",
+      "type": "boolean",
+      "interface": "boolean",
+      "defaultValue": false,
+      "note": "Whether this version has breaking changes"
+    },
+    {
+      "field": "template_definition",
+      "type": "json",
+      "interface": "input-code",
+      "note": "Immutable snapshot of template structure"
+    },
+    {
+      "field": "pre_seeded_tasks",
+      "type": "json",
+      "interface": "input-code",
+      "note": "Default tasks created with this template"
+    },
+    {
+      "field": "database_schemas",
+      "type": "json",
+      "interface": "input-code",
+      "note": "Database schemas to create"
+    },
+    {
+      "field": "automation_hooks",
+      "type": "json",
+      "interface": "input-code",
+      "note": "Workflow triggers for this template"
+    },
+    {
+      "field": "form_inputs",
+      "type": "json",
+      "interface": "input-code",
+      "note": "User input fields during project creation"
+    },
+    {
+      "field": "usage_count",
+      "type": "integer",
+      "interface": "input",
+      "defaultValue": 0,
+      "note": "Number of projects using this version"
+    },
+    {
+      "field": "min_client_version",
+      "type": "string",
+      "interface": "input",
+      "note": "Minimum app version required"
+    }
+  ]
+}

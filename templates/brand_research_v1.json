@@ -1,0 +1,344 @@
+{
+  "template": {
+    "name": "Brand Research & Competitive Analysis",
+    "slug": "brand-research",
+    "description": "Comprehensive brand research workflow using automated competitor analysis from Instagram, LinkedIn, and web sources.",
+    "category": "client_work",
+    "icon": "search",
+    "status": "active",
+    "is_public": true
+  },
+  "version": {
+    "version_number": "1.0.0",
+    "status": "published",
+    "is_latest": true,
+    "changelog": "Initial release with 4 automated competitor research tasks",
+    "breaking_changes": false
+  },
+  "context_schema": {
+    "research": {
+      "competitors": {
+        "type": "object",
+        "description": "Competitor profiles and basic information",
+        "required": true,
+        "schema": {
+          "list": {
+            "type": "array",
+            "items": {
+              "name": "string",
+              "website": "string",
+              "about": "string",
+              "industry": "string",
+              "size": "string"
+            }
+          }
+        }
+      },
+      "competitor_links": {
+        "type": "object",
+        "description": "Website and social media links for each competitor",
+        "required": true,
+        "depends_on": ["research.competitors"]
+      },
+      "social_media": {
+        "instagram": {
+          "type": "object",
+          "description": "Instagram posts analysis for each competitor",
+          "required": true,
+          "depends_on": ["research.competitor_links"]
+        },
+        "linkedin": {
+          "type": "object",
+          "description": "LinkedIn posts analysis for each competitor",
+          "required": true,
+          "depends_on": ["research.competitor_links"]
+        }
+      }
+    },
+    "analysis": {
+      "summary": {
+        "type": "document",
+        "description": "Overall competitive analysis summary report",
+        "required": false,
+        "depends_on": ["research.social_media.instagram", "research.social_media.linkedin"]
+      }
+    }
+  },
+  "pre_seeded_tasks": [
+    {
+      "title": "Identify Competitors & Gather Basic Info",
+      "description": "Automated research to identify key competitors and gather basic information about them (company name, website, about, industry, size). This task uses n8n workflow to scrape competitor data from various sources.",
+      "execution_type": "ai",
+      "status": "new",
+      "priority": "critical",
+      "sla_minutes": 5,
+      "order": 1,
+      "output_config": {
+        "context_path": "research.competitors",
+        "type": "structured_data",
+        "format": "json",
+        "expected_structure": {
+          "competitors": [
+            {
+              "name": "string",
+              "website": "string",
+              "about": "string",
+              "industry": "string",
+              "size": "string"
+            }
+          ]
+        }
+      },
+      "automation": {
+        "n8n_workflow": "get_competitors_and_about",
+        "trigger_on_create": true
+      },
+      "notes": "This task kicks off the research process. Requires initial competitor list as input (from project setup).",
+      "tags": ["research", "competitors", "automated", "discovery"]
+    },
+    {
+      "title": "Extract Competitor Links & Social Profiles",
+      "description": "Automated extraction of website links and social media profiles (Instagram, LinkedIn, Twitter, Facebook) for each identified competitor. Uses n8n workflow to crawl competitor websites and find social links.",
+      "execution_type": "ai",
+      "status": "new",
+      "priority": "high",
+      "sla_minutes": 5,
+      "order": 2,
+      "depends_on": ["Identify Competitors & Gather Basic Info"],
+      "output_config": {
+        "context_path": "research.competitor_links",
+        "type": "structured_data",
+        "format": "json",
+        "expected_structure": {
+          "competitor_links": {
+            "competitor_name": {
+              "website": "string",
+              "instagram": "string",
+              "linkedin": "string",
+              "twitter": "string",
+              "facebook": "string"
+            }
+          }
+        }
+      },
+      "automation": {
+        "n8n_workflow": "get_competitor_links",
+        "trigger_on_dependency_complete": true,
+        "input_from_context": "research.competitors"
+      },
+      "notes": "Depends on competitor list from Task 1. Will scrape each competitor's website to find social media links.",
+      "tags": ["research", "social-media", "automated", "link-extraction"]
+    },
+    {
+      "title": "Analyze Competitor Instagram Content (Last 20 Posts)",
+      "description": "Automated analysis of the last 20 Instagram posts for each competitor. Extracts post content, engagement metrics (likes, comments), hashtags, posting frequency, and content themes. Uses n8n workflow with Instagram API/scraping.",
+      "execution_type": "ai",
+      "status": "new",
+      "priority": "high",
+      "sla_minutes": 10,
+      "order": 3,
+      "depends_on": ["Extract Competitor Links & Social Profiles"],
+      "output_config": {
+        "context_path": "research.social_media.instagram",
+        "type": "structured_data",
+        "format": "json",
+        "expected_structure": {
+          "instagram_analysis": {
+            "competitor_name": {
+              "posts": [
+                {
+                  "post_url": "string",
+                  "caption": "string",
+                  "likes": "number",
+                  "comments": "number",
+                  "date": "string",
+                  "hashtags": ["array"],
+                  "media_type": "string"
+                }
+              ],
+              "summary": {
+                "avg_engagement": "number",
+                "posting_frequency": "string",
+                "top_hashtags": ["array"],
+                "content_themes": ["array"]
+              }
+            }
+          }
+        }
+      },
+      "automation": {
+        "n8n_workflow": "get_competitor_instagram_posts",
+        "trigger_on_dependency_complete": true,
+        "input_from_context": "research.competitor_links"
+      },
+      "notes": "Requires Instagram links from Task 2. May need Instagram API credentials or scraping tools. Run in parallel with LinkedIn task.",
+      "tags": ["research", "instagram", "social-media", "content-analysis", "automated"]
+    },
+    {
+      "title": "Analyze Competitor LinkedIn Content (Last 20 Posts)",
+      "description": "Automated analysis of the last 20 LinkedIn posts for each competitor. Extracts post content, engagement metrics (likes, comments, shares), posting frequency, content topics, and audience engagement. Uses n8n workflow with LinkedIn API/scraping.",
+      "execution_type": "ai",
+      "status": "new",
+      "priority": "high",
+      "sla_minutes": 10,
+      "order": 3,
+      "depends_on": ["Extract Competitor Links & Social Profiles"],
+      "output_config": {
+        "context_path": "research.social_media.linkedin",
+        "type": "structured_data",
+        "format": "json",
+        "expected_structure": {
+          "linkedin_analysis": {
+            "competitor_name": {
+              "posts": [
+                {
+                  "post_url": "string",
+                  "content": "string",
+                  "likes": "number",
+                  "comments": "number",
+                  "shares": "number",
+                  "date": "string",
+                  "post_type": "string"
+                }
+              ],
+              "summary": {
+                "avg_engagement": "number",
+                "posting_frequency": "string",
+                "content_topics": ["array"],
+                "engagement_rate": "number"
+              }
+            }
+          }
+        }
+      },
+      "automation": {
+        "n8n_workflow": "get_competitor_linkedin_posts",
+        "trigger_on_dependency_complete": true,
+        "input_from_context": "research.competitor_links"
+      },
+      "notes": "Requires LinkedIn links from Task 2. May need LinkedIn API credentials. Run in parallel with Instagram task (both have same order and dependency).",
+      "tags": ["research", "linkedin", "social-media", "content-analysis", "automated"]
+    },
+    {
+      "title": "Review & Approve Research Data",
+      "description": "Human review of all collected competitor research data. Verify accuracy, flag any missing information, and approve data quality before proceeding to analysis phase.",
+      "execution_type": "human",
+      "status": "new",
+      "priority": "high",
+      "order": 4,
+      "depends_on": [
+        "Analyze Competitor Instagram Content (Last 20 Posts)",
+        "Analyze Competitor LinkedIn Content (Last 20 Posts)"
+      ],
+      "notes": "Quality check gate before moving to analysis. Review all artifacts generated by previous tasks.",
+      "tags": ["review", "quality-control", "human-review"]
+    },
+    {
+      "title": "Generate Competitive Analysis Report",
+      "description": "AI generates comprehensive competitive analysis report synthesizing all collected data. Includes: competitor positioning, content strategy insights, engagement patterns, identified opportunities, and strategic recommendations.",
+      "execution_type": "ai",
+      "status": "new",
+      "priority": "medium",
+      "sla_minutes": 3,
+      "order": 5,
+      "depends_on": ["Review & Approve Research Data"],
+      "output_config": {
+        "context_path": "analysis.summary",
+        "type": "document",
+        "format": "markdown",
+        "create_document_record": true
+      },
+      "automation": {
+        "n8n_workflow": "generate_analysis_report",
+        "trigger_on_dependency_complete": true,
+        "input_from_context": [
+          "research.competitors",
+          "research.social_media.instagram",
+          "research.social_media.linkedin"
+        ]
+      },
+      "notes": "AI synthesizes all research into actionable insights. Output should be a professional report ready for client presentation.",
+      "tags": ["analysis", "report", "ai-generated", "synthesis"]
+    }
+  ],
+  "form_inputs": [
+    {
+      "field": "competitor_names",
+      "label": "Competitor Names",
+      "type": "textarea",
+      "required": true,
+      "placeholder": "Enter competitor company names (one per line)",
+      "help_text": "List the main competitors you want to research. The system will automatically find their social profiles and analyze their content.",
+      "validation": {
+        "min_lines": 3,
+        "max_lines": 10
+      }
+    },
+    {
+      "field": "research_focus",
+      "label": "Research Focus Areas",
+      "type": "checkbox-multiple",
+      "required": false,
+      "options": [
+        "Content Strategy",
+        "Brand Positioning",
+        "Engagement Tactics",
+        "Visual Identity",
+        "Target Audience",
+        "Product Messaging"
+      ],
+      "default": ["Content Strategy", "Brand Positioning", "Engagement Tactics"],
+      "help_text": "Select which aspects to focus on during analysis"
+    },
+    {
+      "field": "urgency",
+      "label": "Project Urgency",
+      "type": "select",
+      "required": false,
+      "options": [
+        { "value": "standard", "label": "Standard (5-7 days)" },
+        { "value": "expedited", "label": "Expedited (2-3 days)" },
+        { "value": "rush", "label": "Rush (24 hours)" }
+      ],
+      "default": "standard",
+      "help_text": "Affects task SLAs and prioritization"
+    }
+  ],
+  "automation_hooks": [
+    {
+      "trigger": "project_created",
+      "action": "start_first_task",
+      "config": {
+        "task_title": "Identify Competitors & Gather Basic Info",
+        "delay_seconds": 10
+      }
+    },
+    {
+      "trigger": "task_completed",
+      "conditions": [
+        {
+          "field": "task.title",
+          "operator": "equals",
+          "value": "Identify Competitors & Gather Basic Info"
+        },
+        {
+          "field": "task.status",
+          "operator": "equals",
+          "value": "done"
+        }
+      ],
+      "action": "promote_to_context",
+      "config": {
+        "context_path": "research.competitors",
+        "source": "approved_artifacts"
+      }
+    },
+    {
+      "trigger": "all_dependencies_complete",
+      "action": "auto_start_task",
+      "config": {
+        "for_execution_type": ["ai"]
+      }
+    }
+  ]
+}

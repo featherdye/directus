@@ -1,0 +1,165 @@
+{
+  "collection": "jobs",
+  "options": {
+    "icon": "robot",
+    "note": "Background jobs and AI automation tracking"
+  },
+  "fields": [
+    {
+      "field": "job_id",
+      "type": "string",
+      "interface": "input",
+      "unique": true,
+      "required": true,
+      "note": "Unique job identifier / idempotency key"
+    },
+    {
+      "field": "type",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "AI Task", "value": "ai_task" },
+          { "text": "Internal Workflow", "value": "internal_workflow" },
+          { "text": "External Workflow (n8n)", "value": "external_workflow" },
+          { "text": "Data Processing", "value": "data_processing" },
+          { "text": "Template Execution", "value": "template_execution" }
+        ]
+      },
+      "required": true,
+      "note": "Type of automated job"
+    },
+    {
+      "field": "status",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "Pending", "value": "pending" },
+          { "text": "Running", "value": "running" },
+          { "text": "Waiting (External)", "value": "waiting" },
+          { "text": "Succeeded", "value": "succeeded" },
+          { "text": "Failed", "value": "failed" },
+          { "text": "Cancelled", "value": "cancelled" }
+        ]
+      },
+      "defaultValue": "pending",
+      "required": true,
+      "note": "Current job status"
+    },
+    {
+      "field": "progress_percent",
+      "type": "integer",
+      "interface": "input",
+      "defaultValue": 0,
+      "note": "Job completion percentage (0-100)"
+    },
+    {
+      "field": "task_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "note": "Related task (links to os_tasks)"
+    },
+    {
+      "field": "project_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "note": "Related project (links to os_projects)"
+    },
+    {
+      "field": "template_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "note": "Template used for this job (links to os_project_templates)"
+    },
+    {
+      "field": "started_at",
+      "type": "timestamp",
+      "interface": "datetime",
+      "note": "Job start time"
+    },
+    {
+      "field": "completed_at",
+      "type": "timestamp",
+      "interface": "datetime",
+      "note": "Job completion time"
+    },
+    {
+      "field": "last_heartbeat",
+      "type": "timestamp",
+      "interface": "datetime",
+      "note": "Last activity timestamp for monitoring"
+    },
+    {
+      "field": "retry_count",
+      "type": "integer",
+      "interface": "input",
+      "defaultValue": 0,
+      "note": "Number of retry attempts"
+    },
+    {
+      "field": "max_retries",
+      "type": "integer",
+      "interface": "input",
+      "defaultValue": 3,
+      "note": "Maximum retry attempts allowed"
+    },
+    {
+      "field": "input_payload",
+      "type": "json",
+      "interface": "input-code",
+      "note": "Input data for the job"
+    },
+    {
+      "field": "output_payload",
+      "type": "json",
+      "interface": "input-code",
+      "note": "Job result data"
+    },
+    {
+      "field": "error_message",
+      "type": "text",
+      "interface": "textarea",
+      "note": "Error details if failed"
+    },
+    {
+      "field": "logs",
+      "type": "json",
+      "interface": "input-code",
+      "note": "Execution logs array"
+    },
+    {
+      "field": "callback_url",
+      "type": "string",
+      "interface": "input",
+      "note": "Webhook URL for external workflows"
+    },
+    {
+      "field": "external_job_id",
+      "type": "string",
+      "interface": "input",
+      "note": "External system job reference (e.g., n8n execution ID)"
+    },
+    {
+      "field": "priority",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "Low", "value": "low" },
+          { "text": "Normal", "value": "normal" },
+          { "text": "High", "value": "high" },
+          { "text": "Critical", "value": "critical" }
+        ]
+      },
+      "defaultValue": "normal",
+      "note": "Job execution priority"
+    },
+    {
+      "field": "tags",
+      "type": "json",
+      "interface": "tags",
+      "note": "Searchable tags for filtering"
+    }
+  ]
+}

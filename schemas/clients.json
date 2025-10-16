@@ -1,0 +1,87 @@
+{
+  "collection": "clients",
+  "options": {
+    "icon": "person",
+    "note": "Individual clients and contacts"
+  },
+  "fields": [
+    {
+      "field": "first_name",
+      "type": "string",
+      "interface": "input",
+      "required": true,
+      "note": "First name"
+    },
+    {
+      "field": "last_name",
+      "type": "string",
+      "interface": "input",
+      "required": true,
+      "note": "Last name"
+    },
+    {
+      "field": "email",
+      "type": "string",
+      "interface": "input",
+      "unique": true,
+      "required": true,
+      "note": "Email address"
+    },
+    {
+      "field": "phone",
+      "type": "string",
+      "interface": "input",
+      "note": "Phone number"
+    },
+    {
+      "field": "company_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "note": "Related company"
+    },
+    {
+      "field": "title",
+      "type": "string",
+      "interface": "input",
+      "note": "Job title"
+    },
+    {
+      "field": "status",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "Active", "value": "active" },
+          { "text": "Inactive", "value": "inactive" },
+          { "text": "Lead", "value": "lead" }
+        ]
+      },
+      "defaultValue": "active",
+      "note": "Client status"
+    },
+    {
+      "field": "avatar",
+      "type": "uuid",
+      "interface": "file",
+      "note": "Profile photo"
+    },
+    {
+      "field": "linkedin",
+      "type": "string",
+      "interface": "input",
+      "note": "LinkedIn profile URL"
+    },
+    {
+      "field": "notes",
+      "type": "text",
+      "interface": "textarea",
+      "note": "Internal notes"
+    },
+    {
+      "field": "tags",
+      "type": "json",
+      "interface": "tags",
+      "note": "Tags"
+    }
+  ]
+}

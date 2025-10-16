@@ -1,0 +1,110 @@
+{
+  "collection": "tasks",
+  "options": {
+    "icon": "check_box",
+    "note": "Tasks - work items with AI/human execution tracking"
+  },
+  "fields": [
+    {
+      "field": "title",
+      "type": "string",
+      "interface": "input",
+      "required": true,
+      "note": "Task title"
+    },
+    {
+      "field": "description",
+      "type": "text",
+      "interface": "wysiwyg",
+      "note": "Task description"
+    },
+    {
+      "field": "project_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "required": true,
+      "note": "Parent project"
+    },
+    {
+      "field": "status",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "New", "value": "new" },
+          { "text": "In Progress", "value": "in_progress" },
+          { "text": "Needs Review", "value": "needs_review" },
+          { "text": "Done", "value": "done" },
+          { "text": "Rejected", "value": "rejected" }
+        ]
+      },
+      "defaultValue": "new",
+      "note": "Task status (loops: rejected → in_progress)"
+    },
+    {
+      "field": "assigned_to",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "note": "Assigned user (links to directus_users)"
+    },
+    {
+      "field": "execution_type",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "AI Task", "value": "ai" },
+          { "text": "Human Task", "value": "human" },
+          { "text": "Hybrid", "value": "hybrid" }
+        ]
+      },
+      "defaultValue": "human",
+      "note": "Who executes this task"
+    },
+    {
+      "field": "due_date",
+      "type": "timestamp",
+      "interface": "datetime",
+      "note": "Task due date"
+    },
+    {
+      "field": "sla_minutes",
+      "type": "integer",
+      "interface": "input",
+      "note": "SLA target in minutes (e.g., 120 = 2 hours)"
+    },
+    {
+      "field": "priority",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "Low", "value": "low" },
+          { "text": "Medium", "value": "medium" },
+          { "text": "High", "value": "high" },
+          { "text": "Critical", "value": "critical" }
+        ]
+      },
+      "defaultValue": "medium",
+      "note": "Task priority"
+    },
+    {
+      "field": "output",
+      "type": "text",
+      "interface": "wysiwyg",
+      "note": "Task output/result"
+    },
+    {
+      "field": "notes",
+      "type": "text",
+      "interface": "textarea",
+      "note": "Internal notes"
+    },
+    {
+      "field": "tags",
+      "type": "json",
+      "interface": "tags",
+      "note": "Tags"
+    }
+  ]
+}

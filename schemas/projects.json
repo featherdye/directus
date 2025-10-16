@@ -1,0 +1,133 @@
+{
+  "collection": "projects",
+  "options": {
+    "icon": "folder",
+    "note": "Work projects - all work lives inside projects"
+  },
+  "fields": [
+    {
+      "field": "title",
+      "type": "string",
+      "interface": "input",
+      "required": true,
+      "note": "Project name"
+    },
+    {
+      "field": "slug",
+      "type": "string",
+      "interface": "input",
+      "unique": true,
+      "note": "URL-friendly identifier"
+    },
+    {
+      "field": "description",
+      "type": "text",
+      "interface": "wysiwyg",
+      "note": "Project description"
+    },
+    {
+      "field": "company_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "note": "Client company"
+    },
+    {
+      "field": "opportunity_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "note": "Related opportunity"
+    },
+    {
+      "field": "lifecycle_status",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "Draft", "value": "draft" },
+          { "text": "Active", "value": "active" },
+          { "text": "On Hold", "value": "on_hold" },
+          { "text": "Done", "value": "done" },
+          { "text": "Archived", "value": "archived" }
+        ]
+      },
+      "defaultValue": "draft",
+      "note": "Project lifecycle state"
+    },
+    {
+      "field": "template_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "note": "Template version used (links to template_versions)"
+    },
+    {
+      "field": "template_version",
+      "type": "string",
+      "interface": "input",
+      "note": "Template version pinned at creation"
+    },
+    {
+      "field": "start_date",
+      "type": "date",
+      "interface": "datetime",
+      "note": "Project start date"
+    },
+    {
+      "field": "due_date",
+      "type": "date",
+      "interface": "datetime",
+      "note": "Project due date"
+    },
+    {
+      "field": "completed_date",
+      "type": "date",
+      "interface": "datetime",
+      "note": "Actual completion date"
+    },
+    {
+      "field": "budget",
+      "type": "decimal",
+      "interface": "input",
+      "note": "Project budget (USD)"
+    },
+    {
+      "field": "priority",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "Low", "value": "low" },
+          { "text": "Medium", "value": "medium" },
+          { "text": "High", "value": "high" },
+          { "text": "Critical", "value": "critical" }
+        ]
+      },
+      "defaultValue": "medium",
+      "note": "Project priority"
+    },
+    {
+      "field": "notes",
+      "type": "text",
+      "interface": "textarea",
+      "note": "Internal notes"
+    },
+    {
+      "field": "tags",
+      "type": "json",
+      "interface": "tags",
+      "note": "Tags"
+    },
+    {
+      "field": "context",
+      "type": "json",
+      "interface": "input-code",
+      "note": "Project knowledge base - accumulated approved artifacts (cache)"
+    },
+    {
+      "field": "context_version",
+      "type": "integer",
+      "interface": "input",
+      "defaultValue": 0,
+      "note": "Optimistic locking version for context updates"
+    }
+  ]
+}

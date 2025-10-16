@@ -1,0 +1,153 @@
+{
+  "collection": "organizations",
+  "options": {
+    "icon": "business",
+    "note": "Companies and client organizations"
+  },
+  "fields": [
+    {
+      "field": "name",
+      "type": "string",
+      "interface": "input",
+      "required": true,
+      "note": "Organization name"
+    },
+    {
+      "field": "slug",
+      "type": "string",
+      "interface": "input",
+      "unique": true,
+      "note": "URL-friendly identifier"
+    },
+    {
+      "field": "status",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "Lead", "value": "lead" },
+          { "text": "Prospect", "value": "prospect" },
+          { "text": "Customer", "value": "customer" },
+          { "text": "Partner", "value": "partner" },
+          { "text": "Inactive", "value": "inactive" }
+        ]
+      },
+      "defaultValue": "lead",
+      "note": "Organization status in sales pipeline"
+    },
+    {
+      "field": "industry",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "Technology", "value": "technology" },
+          { "text": "Finance", "value": "finance" },
+          { "text": "Healthcare", "value": "healthcare" },
+          { "text": "Retail", "value": "retail" },
+          { "text": "Manufacturing", "value": "manufacturing" },
+          { "text": "Education", "value": "education" },
+          { "text": "Legal", "value": "legal" },
+          { "text": "Marketing/Agency", "value": "marketing" },
+          { "text": "Real Estate", "value": "real_estate" },
+          { "text": "Other", "value": "other" }
+        ]
+      },
+      "note": "Industry sector"
+    },
+    {
+      "field": "company_size",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "1-10", "value": "1-10" },
+          { "text": "11-50", "value": "11-50" },
+          { "text": "51-200", "value": "51-200" },
+          { "text": "201-500", "value": "201-500" },
+          { "text": "501-1000", "value": "501-1000" },
+          { "text": "1000+", "value": "1000+" }
+        ]
+      },
+      "note": "Employee count range"
+    },
+    {
+      "field": "website",
+      "type": "string",
+      "interface": "input",
+      "note": "Company website URL"
+    },
+    {
+      "field": "email",
+      "type": "string",
+      "interface": "input",
+      "note": "General company email"
+    },
+    {
+      "field": "phone",
+      "type": "string",
+      "interface": "input",
+      "note": "Main phone number"
+    },
+    {
+      "field": "address_street",
+      "type": "string",
+      "interface": "input",
+      "note": "Street address"
+    },
+    {
+      "field": "address_city",
+      "type": "string",
+      "interface": "input",
+      "note": "City"
+    },
+    {
+      "field": "address_state",
+      "type": "string",
+      "interface": "input",
+      "note": "State/Province"
+    },
+    {
+      "field": "address_postal",
+      "type": "string",
+      "interface": "input",
+      "note": "Postal/ZIP code"
+    },
+    {
+      "field": "address_country",
+      "type": "string",
+      "interface": "input",
+      "note": "Country"
+    },
+    {
+      "field": "annual_revenue",
+      "type": "decimal",
+      "interface": "input",
+      "note": "Annual revenue (USD)"
+    },
+    {
+      "field": "logo",
+      "type": "uuid",
+      "interface": "file",
+      "note": "Company logo"
+    },
+    {
+      "field": "description",
+      "type": "text",
+      "interface": "textarea",
+      "note": "Company description"
+    },
+    {
+      "field": "notes",
+      "type": "text",
+      "interface": "textarea",
+      "note": "Internal notes about this organization"
+    },
+    {
+      "field": "tags",
+      "type": "json",
+      "interface": "tags",
+      "note": "Flexible tagging"
+    }
+  ]
+}

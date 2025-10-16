@@ -1,0 +1,58 @@
+{
+  "collection": "task_dependencies",
+  "options": {
+    "icon": "link",
+    "note": "Task dependency relationships and ordering"
+  },
+  "fields": [
+    {
+      "field": "task_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "required": true,
+      "note": "Dependent task (links to os_tasks)"
+    },
+    {
+      "field": "depends_on_task_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "required": true,
+      "note": "Prerequisite task that must complete first (links to os_tasks)"
+    },
+    {
+      "field": "dependency_type",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "Finish-to-Start", "value": "finish_to_start" },
+          { "text": "Start-to-Start", "value": "start_to_start" },
+          { "text": "Finish-to-Finish", "value": "finish_to_finish" },
+          { "text": "Soft Dependency", "value": "soft" }
+        ]
+      },
+      "defaultValue": "finish_to_start",
+      "note": "Type of dependency relationship"
+    },
+    {
+      "field": "lag_time_hours",
+      "type": "integer",
+      "interface": "input",
+      "defaultValue": 0,
+      "note": "Wait time (hours) after prerequisite completes"
+    },
+    {
+      "field": "is_blocking",
+      "type": "boolean",
+      "interface": "boolean",
+      "defaultValue": true,
+      "note": "Whether this dependency blocks task start"
+    },
+    {
+      "field": "notes",
+      "type": "text",
+      "interface": "textarea",
+      "note": "Explanation of dependency relationship"
+    }
+  ]
+}

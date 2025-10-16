@@ -1,0 +1,11 @@
+{
+  "collection": "artifact_versions",
+  "fields": [
+    {
+      "field": "primary_file_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "note": "Primary/main file for this artifact (links to directus_files)"
+    }
+  ]
+}

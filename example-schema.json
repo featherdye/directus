@@ -1,0 +1,56 @@
+{
+  "collection": "test_tasks",
+  "options": {
+    "icon": "check_circle",
+    "note": "Example task management collection"
+  },
+  "fields": [
+    {
+      "field": "title",
+      "type": "string",
+      "interface": "input",
+      "required": true,
+      "note": "Task title"
+    },
+    {
+      "field": "description",
+      "type": "text",
+      "interface": "textarea",
+      "note": "Task description"
+    },
+    {
+      "field": "status",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "Draft", "value": "draft" },
+          { "text": "In Progress", "value": "in_progress" },
+          { "text": "Done", "value": "done" }
+        ]
+      },
+      "defaultValue": "draft",
+      "note": "Task status"
+    },
+    {
+      "field": "priority",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "Low", "value": "low" },
+          { "text": "Medium", "value": "medium" },
+          { "text": "High", "value": "high" }
+        ]
+      },
+      "defaultValue": "medium",
+      "note": "Task priority"
+    },
+    {
+      "field": "due_date",
+      "type": "date",
+      "interface": "datetime",
+      "note": "Due date for the task"
+    }
+  ]
+}

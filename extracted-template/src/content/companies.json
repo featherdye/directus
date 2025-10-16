@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "name": "Sparkull",
+    "slug": null,
+    "legal_name": null,
+    "type": null,
+    "industry": "retail",
+    "website": null,
+    "email": null,
+    "phone": null,
+    "address": null,
+    "city": null,
+    "state": null,
+    "postal_code": null,
+    "country": null,
+    "employee_count": null,
+    "annual_revenue": null,
+    "logo": null,
+    "status": "active",
+    "notes": null,
+    "tags": null
+  }
+]

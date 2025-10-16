@@ -1,0 +1,123 @@
+[
+  {
+    "id": "335e9232-b5c7-48bf-ae06-d4e524df53a6",
+    "bundle": null,
+    "meta": {
+      "enabled": true,
+      "id": "335e9232-b5c7-48bf-ae06-d4e524df53a6",
+      "folder": "751fe55c-d76a-4373-a6ea-babe206ea790",
+      "source": "registry",
+      "bundle": null
+    },
+    "schema": {
+      "path": "/directus/extensions/.registry/751fe55c-d76a-4373-a6ea-babe206ea790",
+      "name": "@directus-labs/super-header-interface",
+      "version": "1.2.0",
+      "type": "interface",
+      "entrypoint": "dist/index.js",
+      "host": "^10.0.0 || ^11.0.0",
+      "local": true
+    }
+  },
+  {
+    "id": "63b8592a-8044-4cf4-93c2-8fed26ba1fce",
+    "bundle": null,
+    "meta": {
+      "enabled": true,
+      "id": "63b8592a-8044-4cf4-93c2-8fed26ba1fce",
+      "folder": "37af1194-21a8-40d9-9eb8-ec613c2776d0",
+      "source": "registry",
+      "bundle": null
+    },
+    "schema": {
+      "path": "/directus/extensions/.registry/37af1194-21a8-40d9-9eb8-ec613c2776d0",
+      "name": "@timio23/directus-group-tabs",
+      "version": "3.0.0",
+      "type": "interface",
+      "entrypoint": "dist/index.js",
+      "host": "^11.1.2",
+      "local": true
+    }
+  },
+  {
+    "id": "8c20b301-38aa-48a7-99c4-3142338da1b2",
+    "bundle": null,
+    "meta": {
+      "enabled": true,
+      "id": "8c20b301-38aa-48a7-99c4-3142338da1b2",
+      "folder": "cc0eacb9-614c-48b5-9853-986f5cc25bd8",
+      "source": "registry",
+      "bundle": null
+    },
+    "schema": {
+      "path": "/directus/extensions/.registry/cc0eacb9-614c-48b5-9853-986f5cc25bd8",
+      "name": "@directus-labs/ai-writer-operation",
+      "version": "1.4.2",
+      "type": "operation",
+      "entrypoint": {
+        "app": "dist/app.js",
+        "api": "dist/api.js"
+      },
+      "host": "^10.0.0 || ^11.0.0",
+      "sandbox": {
+        "enabled": true,
+        "requestedScopes": {
+          "request": {
+            "urls": [
+              "https://api.openai.com/v1/**",
+              "https://api.anthropic.com/v1/**",
+              "https://api.replicate.com/v1/**"
+            ],
+            "methods": [
+              "POST",
+              "GET"
+            ]
+          },
+          "log": {},
+          "sleep": {}
+        }
+      },
+      "local": true
+    }
+  },
+  {
+    "id": "c53d1496-ab3b-4a23-9b0c-9fb8ce85800f",
+    "bundle": null,
+    "meta": {
+      "enabled": true,
+      "id": "c53d1496-ab3b-4a23-9b0c-9fb8ce85800f",
+      "folder": "b5913ec2-e23c-47d7-ba58-d359334d75f4",
+      "source": "registry",
+      "bundle": null
+    },
+    "schema": {
+      "path": "/directus/extensions/.registry/b5913ec2-e23c-47d7-ba58-d359334d75f4",
+      "name": "@directus-labs/command-palette-module",
+      "version": "1.1.0",
+      "type": "module",
+      "entrypoint": "dist/index.js",
+      "host": "^11.0.0",
+      "local": true
+    }
+  },
+  {
+    "id": "e07e58cf-3238-4349-8450-1e7054e6b20e",
+    "bundle": null,
+    "meta": {
+      "enabled": true,
+      "id": "e07e58cf-3238-4349-8450-1e7054e6b20e",
+      "folder": "9ae651f8-0d07-45b7-9da3-efca07a6ffa2",
+      "source": "registry",
+      "bundle": null
+    },
+    "schema": {
+      "path": "/directus/extensions/.registry/9ae651f8-0d07-45b7-9da3-efca07a6ffa2",
+      "name": "directus-extension-flat-tabs-interface",
+      "version": "1.0.4",
+      "type": "interface",
+      "entrypoint": "dist/index.js",
+      "host": "^10.10.0",
+      "local": true
+    }
+  }
+]

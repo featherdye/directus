@@ -1,0 +1,100 @@
+{
+  "collection": "artifact_versions",
+  "options": {
+    "icon": "inventory_2",
+    "note": "Version registry for all task artifacts (files + structured data)"
+  },
+  "fields": [
+    {
+      "field": "project_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "required": true,
+      "note": "Parent project (links to projects)"
+    },
+    {
+      "field": "schema_key",
+      "type": "string",
+      "interface": "input",
+      "required": true,
+      "note": "Dot-notation path in project.context (e.g., brand.logo, deliverables.business_card)"
+    },
+    {
+      "field": "status",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          { "text": "Pending Review", "value": "pending" },
+          { "text": "Approved", "value": "approved" },
+          { "text": "Rejected", "value": "rejected" },
+          { "text": "Superseded", "value": "superseded" }
+        ]
+      },
+      "defaultValue": "pending",
+      "required": true,
+      "note": "Approval status"
+    },
+    {
+      "field": "value",
+      "type": "json",
+      "interface": "input-code",
+      "note": "Structured data (colors, typography, extracted metadata)"
+    },
+    {
+      "field": "primary_file_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "note": "Primary/main file for this artifact (links to directus_files)"
+    },
+    {
+      "field": "source_task_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "note": "Task that generated this artifact (links to tasks)"
+    },
+    {
+      "field": "execution_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "note": "Specific execution run (links to task_executions)"
+    },
+    {
+      "field": "version_number",
+      "type": "integer",
+      "interface": "input",
+      "defaultValue": 1,
+      "note": "Sequential version within this schema_key"
+    },
+    {
+      "field": "approved_at",
+      "type": "timestamp",
+      "interface": "datetime",
+      "note": "When this version was approved"
+    },
+    {
+      "field": "approved_by",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "note": "User who approved (links to directus_users)"
+    },
+    {
+      "field": "rejection_reason",
+      "type": "text",
+      "interface": "textarea",
+      "note": "Why this version was rejected (learning data)"
+    },
+    {
+      "field": "metadata",
+      "type": "json",
+      "interface": "input-code",
+      "note": "Additional metadata (dimensions, format, AI model used, etc.)"
+    },
+    {
+      "field": "tags",
+      "type": "json",
+      "interface": "tags",
+      "note": "Tags for categorization"
+    }
+  ]
+}

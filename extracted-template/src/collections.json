@@ -1,0 +1,573 @@
+[
+  {
+    "collection": "Automations",
+    "meta": {
+      "collection": "Automations",
+      "icon": "flowchart",
+      "note": null,
+      "display_template": null,
+      "hidden": false,
+      "singleton": false,
+      "translations": null,
+      "archive_field": null,
+      "archive_app_filter": true,
+      "archive_value": null,
+      "unarchive_value": null,
+      "sort_field": null,
+      "accountability": "all",
+      "color": null,
+      "item_duplication_fields": null,
+      "sort": 3,
+      "group": null,
+      "collapse": "open",
+      "preview_url": null,
+      "versioning": false
+    },
+    "schema": null
+  },
+  {
+    "collection": "Database",
+    "meta": {
+      "collection": "Database",
+      "icon": "folder",
+      "note": null,
+      "display_template": null,
+      "hidden": false,
+      "singleton": false,
+      "translations": null,
+      "archive_field": null,
+      "archive_app_filter": true,
+      "archive_value": null,
+      "unarchive_value": null,
+      "sort_field": null,
+      "accountability": "all",
+      "color": null,
+      "item_duplication_fields": null,
+      "sort": 2,
+      "group": null,
+      "collapse": "open",
+      "preview_url": null,
+      "versioning": false
+    },
+    "schema": null
+  },
+  {
+    "collection": "Workspace",
+    "meta": {
+      "collection": "Workspace",
+      "icon": "folder",
+      "note": null,
+      "display_template": null,
+      "hidden": false,
+      "singleton": false,
+      "translations": null,
+      "archive_field": null,
+      "archive_app_filter": true,
+      "archive_value": null,
+      "unarchive_value": null,
+      "sort_field": null,
+      "accountability": "all",
+      "color": null,
+      "item_duplication_fields": null,
+      "sort": 1,
+      "group": null,
+      "collapse": "open",
+      "preview_url": null,
+      "versioning": false
+    },
+    "schema": null
+  },
+  {
+    "collection": "approvals",
+    "meta": {
+      "collection": "approvals",
+      "icon": "approval",
+      "note": "Maker-checker approval workflow",
+      "display_template": null,
+      "hidden": false,
+      "singleton": false,
+      "translations": null,
+      "archive_field": null,
+      "archive_app_filter": true,
+      "archive_value": null,
+      "unarchive_value": null,
+      "sort_field": null,
+      "accountability": "all",
+      "color": null,
+      "item_duplication_fields": null,
+      "sort": 5,
+      "group": "Workspace",
+      "collapse": "open",
+      "preview_url": null,
+      "versioning": false
+    },
+    "schema": {
+      "name": "approvals",
+      "sql": "CREATE TABLE `approvals` (`id` integer not null primary key autoincrement, `approval_type` varchar(255) null default null, `status` varchar(255) null default 'pending', `requested_by` char(36) null default null, `approver` char(36) null default null, `approved_by` char(36) null default null, `related_collection` varchar(255) null default null, `related_id` char(36) null default null, `requested_at` datetime null default null, `responded_at` datetime null default null, `due_date` datetime null default null, `request_message` text null default null, `response_message` text null default null, `before_data` json null default null, `after_data` json null default null, `auto_approve_rule` varchar(255) null default null)"
+    }
+  },
+  {
+    "collection": "artifact_approvals",
+    "meta": {
+      "collection": "artifact_approvals",
+      "icon": "check_circle",
+      "note": "Audit log of artifact approval/rejection actions",
+      "display_template": null,
+      "hidden": false,
+      "singleton": false,
+      "translations": null,
+      "archive_field": null,
+      "archive_app_filter": true,
+      "archive_value": null,
+      "unarchive_value": null,
+      "sort_field": null,
+      "accountability": "all",
+      "color": null,
+      "item_duplication_fields": null,
+      "sort": 4,
+      "group": "Automations",
+      "collapse": "open",
+      "preview_url": null,
+      "versioning": false
+    },
+    "schema": {
+      "name": "artifact_approvals",
+      "sql": "CREATE TABLE \"artifact_approvals\" (`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL, `artifact_version_id` char(36) NULL DEFAULT null, `project_id` char(36) NULL DEFAULT null, `task_id` char(36) NULL DEFAULT null, `action` varchar(255) NULL DEFAULT null, `actor_id` char(36) NULL DEFAULT null, `actor_type` varchar(255) NULL DEFAULT 'human', `reason` text NULL DEFAULT null, `feedback` json NULL DEFAULT null, `notes` text NULL DEFAULT null, CONSTRAINT `artifact_approvals_artifact_version_id_foreign` FOREIGN KEY (`artifact_version_id`) REFERENCES `artifact_versions` (`id`), CONSTRAINT `artifact_approvals_project_id_foreign` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`), CONSTRAINT `artifact_approvals_task_id_foreign` FOREIGN KEY (`task_id`) REFERENCES `tasks` (`id`))"
+    }
+  },
+  {
+    "collection": "artifact_files",
+    "meta": {
+      "collection": "artifact_files",
+      "icon": "link",
+      "note": "M2M junction: artifact_versions ↔ directus_files",
+      "display_template": null,
+      "hidden": true,
+      "singleton": false,
+      "translations": null,
+      "archive_field": null,
+      "archive_app_filter": true,
+      "archive_value": null,
+      "unarchive_value": null,
+      "sort_field": null,
+      "accountability": "all",
+      "color": null,
+      "item_duplication_fields": null,
+      "sort": null,
+      "group": null,
+      "collapse": "open",
+      "preview_url": null,
+      "versioning": false
+    },
+    "schema": {
+      "name": "artifact_files",
+      "sql": "CREATE TABLE \"artifact_files\" (`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL, `artifact_version_id` char(36) NULL DEFAULT null, `directus_files_id` char(36) NULL DEFAULT null, `sort` integer NULL DEFAULT null, CONSTRAINT `artifact_files_artifact_version_id_foreign` FOREIGN KEY (`artifact_version_id`) REFERENCES `artifact_versions` (`id`), CONSTRAINT `artifact_files_directus_files_id_foreign` FOREIGN KEY (`directus_files_id`) REFERENCES `directus_files` (`id`))"
+    }
+  },
+  {
+    "collection": "artifact_versions",
+    "meta": {
+      "collection": "artifact_versions",
+      "icon": "inventory_2",
+      "note": "Version registry for all task artifacts (files + structured data)",
+      "display_template": null,
+      "hidden": false,
+      "singleton": false,
+      "translations": null,
+      "archive_field": null,
+      "archive_app_filter": true,
+      "archive_value": null,
+      "unarchive_value": null,
+      "sort_field": null,
+      "accountability": "all",
+      "color": null,
+      "item_duplication_fields": null,
+      "sort": 5,
+      "group": "Automations",
+      "collapse": "open",
+      "preview_url": null,
+      "versioning": false
+    },
+    "schema": {
+      "name": "artifact_versions",
+      "sql": "CREATE TABLE \"artifact_versions\" (`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL, `project_id` char(36) NULL DEFAULT null, `schema_key` varchar(255) NULL DEFAULT null, `status` varchar(255) NULL DEFAULT 'pending', `value` json NULL DEFAULT null, `source_task_id` char(36) NULL DEFAULT null, `execution_id` char(36) NULL DEFAULT null, `version_number` integer NULL DEFAULT '1', `approved_at` datetime NULL DEFAULT null, `approved_by` char(36) NULL DEFAULT null, `rejection_reason` text NULL DEFAULT null, `metadata` json NULL DEFAULT null, `tags` json NULL DEFAULT null, `primary_file_id` char(36) NULL, CONSTRAINT `artifact_versions_project_id_foreign` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`), CONSTRAINT `artifact_versions_source_task_id_foreign` FOREIGN KEY (`source_task_id`) REFERENCES `tasks` (`id`), CONSTRAINT `artifact_versions_execution_id_foreign` FOREIGN KEY (`execution_id`) REFERENCES `task_executions` (`id`), CONSTRAINT `artifact_versions_primary_file_id_foreign` FOREIGN KEY (`primary_file_id`) REFERENCES `directus_files` (`id`))"
+    }
+  },
+  {
+    "collection": "clients",
+    "meta": {
+      "collection": "clients",
+      "icon": "person",
+      "note": "Individual clients and contacts",
+      "display_template": null,
+      "hidden": false,
+      "singleton": false,
+      "translations": null,
+      "archive_field": null,
+      "archive_app_filter": true,
+      "archive_value": null,
+      "unarchive_value": null,
+      "sort_field": null,
+      "accountability": "all",
+      "color": null,
+      "item_duplication_fields": null,
+      "sort": 2,
+      "group": "Database",
+      "collapse": "open",
+      "preview_url": null,
+      "versioning": false
+    },
+    "schema": {
+      "name": "clients",
+      "sql": "CREATE TABLE \"clients\" (`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL, `first_name` varchar(255) NULL DEFAULT null, `last_name` varchar(255) NULL DEFAULT null, `email` varchar(255) NULL DEFAULT null, `phone` varchar(255) NULL DEFAULT null, `company_id` char(36) NULL DEFAULT null, `title` varchar(255) NULL DEFAULT null, `status` varchar(255) NULL DEFAULT 'active', `avatar` char(36) NULL DEFAULT null, `linkedin` varchar(255) NULL DEFAULT null, `notes` text NULL DEFAULT null, `tags` json NULL DEFAULT null, CONSTRAINT `clients_company_id_foreign` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`))"
+    }
+  },
+  {
+    "collection": "companies",
+    "meta": {
+      "collection": "companies",
+      "icon": "business",
+      "note": "Companies and organizations (global)",
+      "display_template": null,
+      "hidden": false,
+      "singleton": false,
+      "translations": null,
+      "archive_field": null,
+      "archive_app_filter": true,
+      "archive_value": null,
+      "unarchive_value": null,
+      "sort_field": null,
+      "accountability": "all",
+      "color": null,
+      "item_duplication_fields": null,
+      "sort": 1,
+      "group": "Database",
+      "collapse": "open",
+      "preview_url": null,
+      "versioning": false
+    },
+    "schema": {
+      "name": "companies",
+      "sql": "CREATE TABLE `companies` (`id` integer not null primary key autoincrement, `name` varchar(255) null default null, `slug` varchar(255) null default null, `legal_name` varchar(255) null default null, `type` varchar(255) null default null, `industry` varchar(255) null default null, `website` varchar(255) null default null, `email` varchar(255) null default null, `phone` varchar(255) null default null, `address` text null default null, `city` varchar(255) null default null, `state` varchar(255) null default null, `postal_code` varchar(255) null default null, `country` varchar(255) null default null, `employee_count` integer null default null, `annual_revenue` float null default null, `logo` char(36) null default null, `status` varchar(255) null default 'active', `notes` text null default null, `tags` json null default null)"
+    }
+  },
+  {
+    "collection": "documents",
+    "meta": {
+      "collection": "documents",
+      "icon": "description",
+      "note": "Document registry and metadata",
+      "display_template": null,
+      "hidden": false,
+      "singleton": false,
+      "translations": null,
+      "archive_field": null,
+      "archive_app_filter": true,
+      "archive_value": null,
+      "unarchive_value": null,
+      "sort_field": null,
+      "accountability": "all",
+      "color": null,
+      "item_duplication_fields": null,
+      "sort": 4,
+      "group": "Database",
+      "collapse": "open",
+      "preview_url": null,
+      "versioning": false
+    },
+    "schema": {
+      "name": "documents",
+      "sql": "CREATE TABLE \"documents\" (`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL, `title` varchar(255) NULL DEFAULT null, `description` text NULL DEFAULT null, `file_id` char(36) NULL DEFAULT null, `category` varchar(255) NULL DEFAULT null, `project_id` char(36) NULL DEFAULT null, `company_id` char(36) NULL DEFAULT null, `version` varchar(255) NULL DEFAULT null, `status` varchar(255) NULL DEFAULT 'draft', `created_by_ai` boolean NULL DEFAULT '0', `notes` text NULL DEFAULT null, `tags` json NULL DEFAULT null, `artifact_version_id` char(36) NULL, CONSTRAINT `documents_company_id_foreign` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`), CONSTRAINT `documents_artifact_version_id_foreign` FOREIGN KEY (`artifact_version_id`) REFERENCES `artifact_versions` (`id`))"
+    }
+  },
+  {
+    "collection": "file_attachments",
+    "meta": {
+      "collection": "file_attachments",
+      "icon": "attach_file",
+      "note": "Multi-parent file attachment system",
+      "display_template": null,
+      "hidden": false,
+      "singleton": false,
+      "translations": null,
+      "archive_field": null,
+      "archive_app_filter": true,
+      "archive_value": null,
+      "unarchive_value": null,
+      "sort_field": null,
+      "accountability": "all",
+      "color": null,
+      "item_duplication_fields": null,
+      "sort": 4,
+      "group": "Workspace",
+      "collapse": "open",
+      "preview_url": null,
+      "versioning": false
+    },
+    "schema": {
+      "name": "file_attachments",
+      "sql": "CREATE TABLE `file_attachments` (`id` integer not null primary key autoincrement, `file_id` char(36) null default null, `parent_collection` varchar(255) null default null, `parent_id` char(36) null default null, `field_name` varchar(255) null default null, `role` varchar(255) null default 'attachment', `display_order` integer null default '0', `is_primary` boolean null default '0', `uploaded_by_ai` boolean null default '0', `description` text null default null, `tags` json null default null)"
+    }
+  },
+  {
+    "collection": "jobs",
+    "meta": {
+      "collection": "jobs",
+      "icon": "robot",
+      "note": "Background jobs and AI automation tracking",
+      "display_template": null,
+      "hidden": false,
+      "singleton": false,
+      "translations": null,
+      "archive_field": null,
+      "archive_app_filter": true,
+      "archive_value": null,
+      "unarchive_value": null,
+      "sort_field": null,
+      "accountability": "all",
+      "color": null,
+      "item_duplication_fields": null,
+      "sort": 3,
+      "group": "Workspace",
+      "collapse": "open",
+      "preview_url": null,
+      "versioning": false
+    },
+    "schema": {
+      "name": "jobs",
+      "sql": "CREATE TABLE \"jobs\" (`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL, `job_id` varchar(255) NULL DEFAULT null, `type` varchar(255) NULL DEFAULT null, `status` varchar(255) NULL DEFAULT 'pending', `progress_percent` integer NULL DEFAULT '0', `task_id` char(36) NULL DEFAULT null, `project_id` char(36) NULL DEFAULT null, `template_id` char(36) NULL DEFAULT null, `started_at` datetime NULL DEFAULT null, `completed_at` datetime NULL DEFAULT null, `last_heartbeat` datetime NULL DEFAULT null, `retry_count` integer NULL DEFAULT '0', `max_retries` integer NULL DEFAULT '3', `input_payload` json NULL DEFAULT null, `output_payload` json NULL DEFAULT null, `error_message` text NULL DEFAULT null, `logs` json NULL DEFAULT null, `callback_url` varchar(255) NULL DEFAULT null, `external_job_id` varchar(255) NULL DEFAULT null, `priority` varchar(255) NULL DEFAULT 'normal', `tags` json NULL DEFAULT null, CONSTRAINT `jobs_task_id_foreign` FOREIGN KEY (`task_id`) REFERENCES `tasks` (`id`), CONSTRAINT `jobs_template_id_foreign` FOREIGN KEY (`template_id`) REFERENCES `template_versions` (`id`))"
+    }
+  },
+  {
+    "collection": "opportunities",
+    "meta": {
+      "collection": "opportunities",
+      "icon": "trending_up",
+      "note": "Sales opportunities and deals",
+      "display_template": null,
+      "hidden": false,
+      "singleton": false,
+      "translations": null,
+      "archive_field": null,
+      "archive_app_filter": true,
+      "archive_value": null,
+      "unarchive_value": null,
+      "sort_field": null,
+      "accountability": "all",
+      "color": null,
+      "item_duplication_fields": null,
+      "sort": 3,
+      "group": "Database",
+      "collapse": "open",
+      "preview_url": null,
+      "versioning": false
+    },
+    "schema": {
+      "name": "opportunities",
+      "sql": "CREATE TABLE \"opportunities\" (`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL, `title` varchar(255) NULL DEFAULT null, `company_id` char(36) NULL DEFAULT null, `client_id` char(36) NULL DEFAULT null, `value` float NULL DEFAULT null, `stage` varchar(255) NULL DEFAULT 'lead', `probability` integer NULL DEFAULT null, `expected_close_date` date NULL DEFAULT null, `actual_close_date` date NULL DEFAULT null, `description` text NULL DEFAULT null, `notes` text NULL DEFAULT null, `tags` json NULL DEFAULT null, CONSTRAINT `opportunities_company_id_foreign` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`), CONSTRAINT `opportunities_client_id_foreign` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`))"
+    }
+  },
+  {
+    "collection": "projects",
+    "meta": {
+      "collection": "projects",
+      "icon": "local_fire_department",
+      "note": "Work projects - all work lives inside projects",
+      "display_template": null,
+      "hidden": false,
+      "singleton": false,
+      "translations": null,
+      "archive_field": null,
+      "archive_app_filter": true,
+      "archive_value": null,
+      "unarchive_value": null,
+      "sort_field": null,
+      "accountability": "all",
+      "color": null,
+      "item_duplication_fields": null,
+      "sort": 1,
+      "group": "Workspace",
+      "collapse": "open",
+      "preview_url": null,
+      "versioning": false
+    },
+    "schema": {
+      "name": "projects",
+      "sql": "CREATE TABLE \"projects\" (`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL, `title` varchar(255) NULL DEFAULT null, `description` text NULL DEFAULT null, `company_id` char(36) NULL DEFAULT null, `opportunity_id` char(36) NULL DEFAULT null, `lifecycle_status` varchar(255) NULL DEFAULT 'draft', `template_id` char(36) NULL DEFAULT null, `template_version` varchar(255) NULL DEFAULT null, `start_date` date NULL DEFAULT null, `due_date` date NULL DEFAULT null, `completed_date` date NULL DEFAULT null, `budget` float NULL DEFAULT null, `priority` varchar(255) NULL DEFAULT 'medium', `notes` text NULL DEFAULT null, `tags` json NULL DEFAULT null, `context` json NULL DEFAULT '{}', `context_version` integer NULL DEFAULT '0', CONSTRAINT `projects_company_id_foreign` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`), CONSTRAINT `projects_opportunity_id_foreign` FOREIGN KEY (`opportunity_id`) REFERENCES `opportunities` (`id`), CONSTRAINT `projects_template_id_foreign` FOREIGN KEY (`template_id`) REFERENCES `template_versions` (`id`))"
+    }
+  },
+  {
+    "collection": "task_artifacts",
+    "meta": {
+      "collection": "task_artifacts",
+      "icon": "link",
+      "note": "M2M junction: tasks ↔ artifact_versions",
+      "display_template": null,
+      "hidden": true,
+      "singleton": false,
+      "translations": null,
+      "archive_field": null,
+      "archive_app_filter": true,
+      "archive_value": null,
+      "unarchive_value": null,
+      "sort_field": null,
+      "accountability": "all",
+      "color": null,
+      "item_duplication_fields": null,
+      "sort": null,
+      "group": null,
+      "collapse": "open",
+      "preview_url": null,
+      "versioning": false
+    },
+    "schema": {
+      "name": "task_artifacts",
+      "sql": "CREATE TABLE \"task_artifacts\" (`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL, `task_id` char(36) NULL DEFAULT null, `artifact_version_id` char(36) NULL DEFAULT null, `sort` integer NULL DEFAULT null, CONSTRAINT `task_artifacts_task_id_foreign` FOREIGN KEY (`task_id`) REFERENCES `tasks` (`id`), CONSTRAINT `task_artifacts_artifact_version_id_foreign` FOREIGN KEY (`artifact_version_id`) REFERENCES `artifact_versions` (`id`))"
+    }
+  },
+  {
+    "collection": "task_dependencies",
+    "meta": {
+      "collection": "task_dependencies",
+      "icon": "link",
+      "note": "Task dependency relationships and ordering",
+      "display_template": null,
+      "hidden": false,
+      "singleton": false,
+      "translations": null,
+      "archive_field": null,
+      "archive_app_filter": true,
+      "archive_value": null,
+      "unarchive_value": null,
+      "sort_field": null,
+      "accountability": "all",
+      "color": null,
+      "item_duplication_fields": null,
+      "sort": 3,
+      "group": "Automations",
+      "collapse": "open",
+      "preview_url": null,
+      "versioning": false
+    },
+    "schema": {
+      "name": "task_dependencies",
+      "sql": "CREATE TABLE \"task_dependencies\" (`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL, `task_id` char(36) NULL DEFAULT null, `depends_on_task_id` char(36) NULL DEFAULT null, `dependency_type` varchar(255) NULL DEFAULT 'finish_to_start', `lag_time_hours` integer NULL DEFAULT '0', `is_blocking` boolean NULL DEFAULT '1', `notes` text NULL DEFAULT null, CONSTRAINT `task_dependencies_task_id_foreign` FOREIGN KEY (`task_id`) REFERENCES `tasks` (`id`), CONSTRAINT `task_dependencies_depends_on_task_id_foreign` FOREIGN KEY (`depends_on_task_id`) REFERENCES `tasks` (`id`))"
+    }
+  },
+  {
+    "collection": "task_executions",
+    "meta": {
+      "collection": "task_executions",
+      "icon": "analytics",
+      "note": "AI task execution tracking with quality metrics and SLA",
+      "display_template": null,
+      "hidden": false,
+      "singleton": false,
+      "translations": null,
+      "archive_field": null,
+      "archive_app_filter": true,
+      "archive_value": null,
+      "unarchive_value": null,
+      "sort_field": null,
+      "accountability": "all",
+      "color": null,
+      "item_duplication_fields": null,
+      "sort": 2,
+      "group": "Automations",
+      "collapse": "open",
+      "preview_url": null,
+      "versioning": false
+    },
+    "schema": {
+      "name": "task_executions",
+      "sql": "CREATE TABLE \"task_executions\" (`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL, `task_id` char(36) NULL DEFAULT null, `job_id` char(36) NULL DEFAULT null, `execution_type` varchar(255) NULL DEFAULT null, `template_version` varchar(255) NULL DEFAULT null, `started_at` datetime NULL DEFAULT null, `completed_at` datetime NULL DEFAULT null, `duration_seconds` integer NULL DEFAULT null, `sla_target_seconds` integer NULL DEFAULT null, `met_sla` boolean NULL DEFAULT null, `accuracy_band` varchar(255) NULL DEFAULT null, `acceptance_status` varchar(255) NULL DEFAULT 'pending', `correction_count` integer NULL DEFAULT '0', `corrections` json NULL DEFAULT null, `checker_user_id` char(36) NULL DEFAULT null, `escalated` boolean NULL DEFAULT '0', `escalation_reason` text NULL DEFAULT null, `automation_percentage` float NULL DEFAULT null, `cost_usd` float NULL DEFAULT null, `tokens_used` integer NULL DEFAULT null, `model_used` varchar(255) NULL DEFAULT null, `feedback_score` integer NULL DEFAULT null, `feedback_text` text NULL DEFAULT null, `training_data` boolean NULL DEFAULT '1', `tags` json NULL DEFAULT null, CONSTRAINT `task_executions_task_id_foreign` FOREIGN KEY (`task_id`) REFERENCES `tasks` (`id`), CONSTRAINT `task_executions_job_id_foreign` FOREIGN KEY (`job_id`) REFERENCES `jobs` (`id`))"
+    }
+  },
+  {
+    "collection": "tasks",
+    "meta": {
+      "collection": "tasks",
+      "icon": "check_box",
+      "note": "Tasks - work items with AI/human execution tracking",
+      "display_template": null,
+      "hidden": false,
+      "singleton": false,
+      "translations": null,
+      "archive_field": null,
+      "archive_app_filter": true,
+      "archive_value": null,
+      "unarchive_value": null,
+      "sort_field": null,
+      "accountability": "all",
+      "color": null,
+      "item_duplication_fields": null,
+      "sort": 2,
+      "group": "Workspace",
+      "collapse": "open",
+      "preview_url": null,
+      "versioning": false
+    },
+    "schema": {
+      "name": "tasks",
+      "sql": "CREATE TABLE \"tasks\" (`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL, `title` varchar(255) NULL DEFAULT null, `description` text NULL DEFAULT null, `project_id` char(36) NULL DEFAULT null, `status` varchar(255) NULL DEFAULT 'new', `assigned_to` char(36) NULL DEFAULT null, `execution_type` varchar(255) NULL DEFAULT 'human', `due_date` datetime NULL DEFAULT null, `sla_minutes` integer NULL DEFAULT null, `priority` varchar(255) NULL DEFAULT 'medium', `output` text NULL DEFAULT null, `notes` text NULL DEFAULT null, `tags` json NULL DEFAULT null)"
+    }
+  },
+  {
+    "collection": "template_versions",
+    "meta": {
+      "collection": "template_versions",
+      "icon": "history",
+      "note": "Immutable template versions with changelog",
+      "display_template": null,
+      "hidden": false,
+      "singleton": false,
+      "translations": null,
+      "archive_field": null,
+      "archive_app_filter": true,
+      "archive_value": null,
+      "unarchive_value": null,
+      "sort_field": null,
+      "accountability": "all",
+      "color": null,
+      "item_duplication_fields": null,
+      "sort": 1,
+      "group": "Automations",
+      "collapse": "open",
+      "preview_url": null,
+      "versioning": false
+    },
+    "schema": {
+      "name": "template_versions",
+      "sql": "CREATE TABLE \"template_versions\" (`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL, `template_id` char(36) NULL DEFAULT null, `version_number` varchar(255) NULL DEFAULT null, `status` varchar(255) NULL DEFAULT 'draft', `is_latest` boolean NULL DEFAULT '0', `published_at` datetime NULL DEFAULT null, `published_by` char(36) NULL DEFAULT null, `deprecated_at` datetime NULL DEFAULT null, `changelog` text NULL DEFAULT null, `breaking_changes` boolean NULL DEFAULT '0', `template_definition` json NULL DEFAULT null, `pre_seeded_tasks` json NULL DEFAULT null, `database_schemas` json NULL DEFAULT null, `automation_hooks` json NULL DEFAULT null, `form_inputs` json NULL DEFAULT null, `usage_count` integer NULL DEFAULT '0', `min_client_version` varchar(255) NULL DEFAULT null, CONSTRAINT `template_versions_template_id_foreign` FOREIGN KEY (`template_id`) REFERENCES `templates` (`id`))"
+    }
+  },
+  {
+    "collection": "templates",
+    "meta": {
+      "collection": "templates",
+      "icon": "widgets",
+      "note": "Project templates - parent collection for versioned workflows",
+      "display_template": null,
+      "hidden": false,
+      "singleton": false,
+      "translations": null,
+      "archive_field": null,
+      "archive_app_filter": true,
+      "archive_value": null,
+      "unarchive_value": null,
+      "sort_field": null,
+      "accountability": "all",
+      "color": null,
+      "item_duplication_fields": null,
+      "sort": 6,
+      "group": "Workspace",
+      "collapse": "open",
+      "preview_url": null,
+      "versioning": false
+    },
+    "schema": {
+      "name": "templates",
+      "sql": "CREATE TABLE `templates` (`id` integer not null primary key autoincrement, `name` varchar(255) null default null, `slug` varchar(255) null default null, `description` text null default null, `category` varchar(255) null default null, `icon` varchar(255) null default null, `status` varchar(255) null default 'draft', `owner_id` char(36) null default null, `is_public` boolean null default '0', `usage_count` integer null default '0', `notes` text null default null, `tags` json null default null)"
+    }
+  }
+]

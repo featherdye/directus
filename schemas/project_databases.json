@@ -1,0 +1,69 @@
+{
+  "collection": "project_databases",
+  "options": {
+    "icon": "table_chart",
+    "note": "Project-scoped database instances"
+  },
+  "fields": [
+    {
+      "field": "project_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "required": true,
+      "note": "Related project (links to os_projects)"
+    },
+    {
+      "field": "global_database_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "note": "Inherited from global database (links to global_databases)"
+    },
+    {
+      "field": "name",
+      "type": "string",
+      "interface": "input",
+      "required": true,
+      "note": "Database name within this project"
+    },
+    {
+      "field": "slug",
+      "type": "string",
+      "interface": "input",
+      "required": true,
+      "note": "URL-friendly identifier"
+    },
+    {
+      "field": "description",
+      "type": "text",
+      "interface": "textarea",
+      "note": "Purpose of this database instance"
+    },
+    {
+      "field": "schema_definition",
+      "type": "json",
+      "interface": "input-code",
+      "note": "JSON Schema (inherits from global if linked)"
+    },
+    {
+      "field": "is_inherited",
+      "type": "boolean",
+      "interface": "boolean",
+      "defaultValue": false,
+      "note": "Whether schema is inherited from global DB"
+    },
+    {
+      "field": "allow_schema_modifications",
+      "type": "boolean",
+      "interface": "boolean",
+      "defaultValue": true,
+      "note": "Allow project-level schema changes"
+    },
+    {
+      "field": "row_count",
+      "type": "integer",
+      "interface": "input",
+      "defaultValue": 0,
+      "note": "Number of rows in this database"
+    }
+  ]
+}

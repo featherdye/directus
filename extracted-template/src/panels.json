@@ -1,0 +1,1157 @@
+[
+  {
+    "id": "16690e0b-ffc4-471f-9762-d4f2e55ad543",
+    "dashboard": "d283dd34-6886-4cfd-b1c5-744320562acc",
+    "name": null,
+    "icon": null,
+    "color": null,
+    "show_header": false,
+    "note": null,
+    "type": "label",
+    "position_x": 2,
+    "position_y": 43,
+    "width": 20,
+    "height": 5,
+    "options": {
+      "text": "Sales",
+      "color": "#18222F",
+      "fontSize": "48px",
+      "fontWeight": 500
+    },
+    "date_created": "2025-10-15T14:31:02.864Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  },
+  {
+    "id": "2080c1a2-404d-4886-acfd-2ed468c2ec73",
+    "dashboard": "d283dd34-6886-4cfd-b1c5-744320562acc",
+    "name": "Past Due Tasks",
+    "icon": "warning",
+    "color": "#E35169",
+    "show_header": true,
+    "note": null,
+    "type": "metric",
+    "position_x": 22,
+    "position_y": 16,
+    "width": 15,
+    "height": 5,
+    "options": {
+      "collection": "os_tasks",
+      "sortField": null,
+      "field": "id",
+      "function": "count",
+      "filter": {
+        "_and": [
+          {
+            "assigned_to": {
+              "id": {
+                "_eq": "{{user}}"
+              }
+            }
+          },
+          {
+            "due_date": {
+              "_lte": "$NOW"
+            }
+          }
+        ]
+      },
+      "conditionalFormatting": [
+        {
+          "operator": ">=",
+          "value": "0",
+          "color": "#E35169"
+        }
+      ]
+    },
+    "date_created": "2025-10-15T14:31:02.962Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  },
+  {
+    "id": "23dec2a6-f1a8-450b-81eb-6d6eb772b69b",
+    "dashboard": "d283dd34-6886-4cfd-b1c5-744320562acc",
+    "name": "Select User",
+    "icon": "supervised_user_circle",
+    "color": "#18222F",
+    "show_header": true,
+    "note": null,
+    "type": "relational-variable",
+    "position_x": 2,
+    "position_y": 8,
+    "width": 30,
+    "height": 6,
+    "options": {
+      "field": "user",
+      "collection": "directus_users",
+      "displayTemplate": "{{avatar.$thumbnail}} {{first_name}} {{last_name}}",
+      "filter": {
+        "_and": [
+          {
+            "_or": []
+          }
+        ]
+      }
+    },
+    "date_created": "2025-10-15T14:31:03.062Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  },
+  {
+    "id": "24c2b515-4d64-4919-9410-8a40cfba81ce",
+    "dashboard": "d283dd34-6886-4cfd-b1c5-744320562acc",
+    "name": "Past Due Activities",
+    "icon": "warning",
+    "color": "#E35169",
+    "show_header": true,
+    "note": null,
+    "type": "metric",
+    "position_x": 22,
+    "position_y": 43,
+    "width": 15,
+    "height": 5,
+    "options": {
+      "collection": "os_activities",
+      "sortField": "due_date",
+      "field": "id",
+      "function": "count",
+      "filter": {
+        "_and": [
+          {
+            "assigned_to": {
+              "id": {
+                "_eq": "{{user}}"
+              }
+            }
+          },
+          {
+            "due_date": {
+              "_lte": "$NOW"
+            }
+          }
+        ]
+      },
+      "conditionalFormatting": [
+        {
+          "operator": ">=",
+          "value": 0,
+          "color": "#E35169"
+        }
+      ]
+    },
+    "date_created": "2025-10-15T14:31:03.158Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  },
+  {
+    "id": "28d6c776-0caa-4038-a1be-e7e11d3b9eee",
+    "dashboard": "0d85d827-a045-4dee-bcd3-d72d3a91cc52",
+    "name": "Proposal Amount",
+    "icon": null,
+    "color": "#FFA439",
+    "show_header": false,
+    "note": null,
+    "type": "metric",
+    "position_x": 17,
+    "position_y": 23,
+    "width": 15,
+    "height": 6,
+    "options": {
+      "collection": "os_deals",
+      "sortField": null,
+      "function": "sum",
+      "filter": {
+        "_and": [
+          {
+            "deal_stage": {
+              "name": {
+                "_contains": "Proposal"
+              }
+            }
+          }
+        ]
+      },
+      "field": "deal_value",
+      "conditionalFormatting": [
+        {
+          "operator": ">=",
+          "value": 0,
+          "color": "#FFA439"
+        }
+      ],
+      "prefix": "$",
+      "fontSize": "64px",
+      "fontWeight": 700
+    },
+    "date_created": "2025-10-15T14:31:03.265Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  },
+  {
+    "id": "33d54856-e7a5-4346-bb50-448535fee9b9",
+    "dashboard": "ea9c9be7-dcb3-4351-8a05-0d30c150bb64",
+    "name": "Submissions With Comments",
+    "icon": "comment",
+    "color": "#18222F",
+    "show_header": true,
+    "note": null,
+    "type": "list",
+    "position_x": 32,
+    "position_y": 14,
+    "width": 25,
+    "height": 26,
+    "options": {
+      "collection": "help_feedback",
+      "sortField": "date_created",
+      "limit": 10,
+      "displayTemplate": "{{title}} - {{comments}}",
+      "linkToItem": true,
+      "filter": {
+        "_and": [
+          {
+            "_and": [
+              {
+                "date_created": {
+                  "_gte": "{{date_from}}"
+                }
+              },
+              {
+                "date_created": {
+                  "_lte": "{{date_to}}"
+                }
+              },
+              {
+                "comments": {
+                  "_nnull": true
+                }
+              },
+              {
+                "comments": {
+                  "_icontains": "{{search}}"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "date_created": "2025-10-15T14:31:03.366Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  },
+  {
+    "id": "39c82b64-df2a-4d83-a2b8-a41575e87af3",
+    "dashboard": "ea9c9be7-dcb3-4351-8a05-0d30c150bb64",
+    "name": "Date From",
+    "icon": "date_range",
+    "color": "#18222F",
+    "show_header": true,
+    "note": null,
+    "type": "variable",
+    "position_x": 1,
+    "position_y": 7,
+    "width": 15,
+    "height": 6,
+    "options": {
+      "field": "date_from",
+      "type": "dateTime",
+      "inter": "datetime",
+      "defaultValue": "2023-01-01T12:00:00",
+      "options": {
+        "use24": false
+      }
+    },
+    "date_created": "2025-10-15T14:31:03.464Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  },
+  {
+    "id": "3ca99f50-b186-4213-be9c-8773904cfd5e",
+    "dashboard": "ea9c9be7-dcb3-4351-8a05-0d30c150bb64",
+    "name": "Feedback",
+    "icon": null,
+    "color": null,
+    "show_header": false,
+    "note": null,
+    "type": "label",
+    "position_x": 1,
+    "position_y": 1,
+    "width": 30,
+    "height": 6,
+    "options": {
+      "text": "Help Center Feedback",
+      "color": "#8196B0",
+      "fontWeight": 500
+    },
+    "date_created": "2025-10-15T14:31:03.564Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  },
+  {
+    "id": "429d22a1-d60c-4daa-a9c0-a2db3cbb89b3",
+    "dashboard": "0d85d827-a045-4dee-bcd3-d72d3a91cc52",
+    "name": "Date From",
+    "icon": "calendar_month",
+    "color": "#18222F",
+    "show_header": true,
+    "note": null,
+    "type": "variable",
+    "position_x": 17,
+    "position_y": 8,
+    "width": 15,
+    "height": 6,
+    "options": {
+      "field": "date_from",
+      "type": "timestamp",
+      "inter": "datetime",
+      "defaultValue": null,
+      "options": {
+        "use24": false
+      }
+    },
+    "date_created": "2025-10-15T14:31:03.663Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  },
+  {
+    "id": "4a74d1ec-9900-4d85-8c67-b803f5f7c4b3",
+    "dashboard": "0d85d827-a045-4dee-bcd3-d72d3a91cc52",
+    "name": "Qualification",
+    "icon": null,
+    "color": "#FFC23B",
+    "show_header": true,
+    "note": null,
+    "type": "metric",
+    "position_x": 2,
+    "position_y": 16,
+    "width": 15,
+    "height": 7,
+    "options": {
+      "collection": "os_deals",
+      "sortField": null,
+      "function": "count",
+      "filter": {
+        "_and": [
+          {
+            "deal_stage": {
+              "name": {
+                "_contains": "Qualification"
+              }
+            }
+          }
+        ]
+      },
+      "field": "id",
+      "conditionalFormatting": [
+        {
+          "operator": ">=",
+          "value": 0,
+          "color": "#FFC23B"
+        }
+      ],
+      "fontWeight": 500
+    },
+    "date_created": "2025-10-15T14:31:03.767Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  },
+  {
+    "id": "64783f47-3380-406a-a436-b065dfeaaae8",
+    "dashboard": "d283dd34-6886-4cfd-b1c5-744320562acc",
+    "name": "User Tasks",
+    "icon": "checklist",
+    "color": "#18222F",
+    "show_header": true,
+    "note": null,
+    "type": "list",
+    "position_x": 2,
+    "position_y": 21,
+    "width": 50,
+    "height": 20,
+    "options": {
+      "collection": "os_tasks",
+      "sortField": "due_date",
+      "limit": 10,
+      "linkToItem": true,
+      "displayTemplate": "{{name}} - {{due_date}} - {{type}}",
+      "filter": {
+        "_and": [
+          {
+            "_and": [
+              {
+                "assigned_to": {
+                  "id": {
+                    "_eq": "$CURRENT_USER"
+                  }
+                }
+              },
+              {
+                "status": {
+                  "_neq": "completed"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "date_created": "2025-10-15T14:31:03.888Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  },
+  {
+    "id": "67071ea8-f03b-431d-8e89-14ad40258215",
+    "dashboard": "ea9c9be7-dcb3-4351-8a05-0d30c150bb64",
+    "name": "Posts In Review",
+    "icon": "magnify_docked",
+    "color": null,
+    "show_header": true,
+    "note": null,
+    "type": "metric",
+    "position_x": 27,
+    "position_y": 44,
+    "width": 16,
+    "height": 6,
+    "options": {
+      "collection": "posts",
+      "field": "id",
+      "function": "count",
+      "sortField": "id",
+      "filter": {
+        "_and": [
+          {
+            "status": {
+              "_eq": "in_review"
+            }
+          }
+        ]
+      },
+      "suffix": "posts"
+    },
+    "date_created": "2025-10-15T14:31:03.963Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  },
+  {
+    "id": "6ea8ff25-d7f8-4494-b29e-79246cce6af9",
+    "dashboard": "0d85d827-a045-4dee-bcd3-d72d3a91cc52",
+    "name": "Date From",
+    "icon": "calendar_month",
+    "color": "#18222F",
+    "show_header": true,
+    "note": null,
+    "type": "variable",
+    "position_x": 2,
+    "position_y": 8,
+    "width": 15,
+    "height": 6,
+    "options": {
+      "field": "date_from",
+      "type": "timestamp",
+      "inter": "datetime",
+      "defaultValue": null,
+      "options": {
+        "use24": false
+      }
+    },
+    "date_created": "2025-10-15T14:31:04.060Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  },
+  {
+    "id": "775d0469-a878-4814-b5c3-2558dbab1b1a",
+    "dashboard": "ea9c9be7-dcb3-4351-8a05-0d30c150bb64",
+    "name": "Date To",
+    "icon": "date_range",
+    "color": "#18222F",
+    "show_header": true,
+    "note": null,
+    "type": "variable",
+    "position_x": 16,
+    "position_y": 7,
+    "width": 15,
+    "height": 6,
+    "options": {
+      "field": "date_to",
+      "type": "dateTime",
+      "inter": "datetime",
+      "defaultValue": "{{$NOW}}",
+      "options": {
+        "use24": false
+      }
+    },
+    "date_created": "2025-10-15T14:31:04.162Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  },
+  {
+    "id": "77a5d341-747b-4210-baf8-10a61bf6a10a",
+    "dashboard": "ea9c9be7-dcb3-4351-8a05-0d30c150bb64",
+    "name": "Search",
+    "icon": "screen_search_desktop",
+    "color": "#18222F",
+    "show_header": true,
+    "note": "Search response comments for a string of text.",
+    "type": "variable",
+    "position_x": 32,
+    "position_y": 7,
+    "width": 25,
+    "height": 6,
+    "options": {
+      "field": "search",
+      "type": "string",
+      "inter": "input",
+      "options": {
+        "placeholder": "Search comments here",
+        "iconLeft": null
+      },
+      "defaultValue": " "
+    },
+    "date_created": "2025-10-15T14:31:04.264Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  },
+  {
+    "id": "7a171d85-eae4-4c85-bac0-dd1d5d40bee7",
+    "dashboard": "0d85d827-a045-4dee-bcd3-d72d3a91cc52",
+    "name": "Published Pages",
+    "icon": null,
+    "color": null,
+    "show_header": true,
+    "note": null,
+    "type": "metric",
+    "position_x": 32,
+    "position_y": 2,
+    "width": 24,
+    "height": 7,
+    "options": {
+      "collection": "pages",
+      "field": "id",
+      "function": "count",
+      "filter": {
+        "_and": [
+          {
+            "status": {
+              "_eq": "published"
+            }
+          }
+        ]
+      },
+      "suffix": " pages"
+    },
+    "date_created": "2025-10-15T14:31:04.364Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  },
+  {
+    "id": "7f562cef-9b23-44a7-b618-107a4b1fa717",
+    "dashboard": "0d85d827-a045-4dee-bcd3-d72d3a91cc52",
+    "name": "Published Posts",
+    "icon": "sports_basketball",
+    "color": "#FFA439",
+    "show_header": true,
+    "note": null,
+    "type": "list",
+    "position_x": 4,
+    "position_y": 51,
+    "width": 33,
+    "height": 26,
+    "options": {
+      "collection": "posts",
+      "field": "id",
+      "function": "count",
+      "filter": {
+        "_and": [
+          {
+            "status": {
+              "_eq": "published"
+            }
+          }
+        ]
+      },
+      "limit": -1,
+      "displayTemplate": "{{title}} - {{slug}}",
+      "linkToItem": true
+    },
+    "date_created": "2025-10-15T14:31:04.463Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  },
+  {
+    "id": "80963cd5-c9ec-4413-aa57-a088804b1684",
+    "dashboard": "d283dd34-6886-4cfd-b1c5-744320562acc",
+    "name": null,
+    "icon": null,
+    "color": null,
+    "show_header": false,
+    "note": null,
+    "type": "bar-chart",
+    "position_x": 3,
+    "position_y": 69,
+    "width": 42,
+    "height": 10,
+    "options": {
+      "collection": "os_tasks",
+      "xAxis": "assigned_to",
+      "function": "count"
+    },
+    "date_created": "2025-10-15T14:31:04.567Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  },
+  {
+    "id": "8194088d-4321-4cce-94e3-ac77d8f02ef6",
+    "dashboard": "ea9c9be7-dcb3-4351-8a05-0d30c150bb64",
+    "name": "Total Submissions Over Time",
+    "icon": "show_chart",
+    "color": "#6644FF",
+    "show_header": true,
+    "note": null,
+    "type": "time-series",
+    "position_x": 1,
+    "position_y": 20,
+    "width": 30,
+    "height": 10,
+    "options": {
+      "collection": "help_feedback",
+      "valueField": "id",
+      "color": "#18222F",
+      "function": "count",
+      "precision": "day",
+      "range": "auto",
+      "dateField": "date_created",
+      "filter": {
+        "_and": [
+          {
+            "_and": [
+              {
+                "date_created": {
+                  "_gte": "{{date_from}}"
+                }
+              },
+              {
+                "date_created": {
+                  "_lte": "{{date_to}}"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "date_created": "2025-10-15T14:31:04.665Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  },
+  {
+    "id": "8628bb84-90bb-4ff1-8142-42d385bbe3f0",
+    "dashboard": "d283dd34-6886-4cfd-b1c5-744320562acc",
+    "name": "User Dashboard",
+    "icon": "task_alt",
+    "color": null,
+    "show_header": false,
+    "note": null,
+    "type": "label",
+    "position_x": 2,
+    "position_y": 4,
+    "width": 30,
+    "height": 4,
+    "options": {
+      "text": "User Dashboard",
+      "color": "#D064AC",
+      "fontSize": "48px",
+      "fontWeight": 500
+    },
+    "date_created": "2025-10-15T14:31:04.762Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  },
+  {
+    "id": "96e4f6a7-2673-4394-bddc-3b59c1999d2b",
+    "dashboard": "d283dd34-6886-4cfd-b1c5-744320562acc",
+    "name": "Open Activities",
+    "icon": "notifications_active",
+    "color": "#18222F",
+    "show_header": true,
+    "note": null,
+    "type": "metric",
+    "position_x": 37,
+    "position_y": 43,
+    "width": 15,
+    "height": 5,
+    "options": {
+      "collection": "os_activities",
+      "sortField": "due_date",
+      "field": "id",
+      "function": "count",
+      "filter": {
+        "_and": [
+          {
+            "assigned_to": {
+              "id": {
+                "_eq": "{{user}}"
+              }
+            }
+          }
+        ]
+      },
+      "conditionalFormatting": [
+        {
+          "operator": ">=",
+          "value": 0,
+          "color": "#18222F"
+        }
+      ]
+    },
+    "date_created": "2025-10-15T14:31:04.866Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  },
+  {
+    "id": "9bf6a9fe-3dc2-460c-863b-3533876c569d",
+    "dashboard": "ea9c9be7-dcb3-4351-8a05-0d30c150bb64",
+    "name": "Total Submissions",
+    "icon": "numbers",
+    "color": "#A2B5CD",
+    "show_header": true,
+    "note": null,
+    "type": "metric",
+    "position_x": 1,
+    "position_y": 14,
+    "width": 15,
+    "height": 6,
+    "options": {
+      "collection": "help_feedback",
+      "sortField": null,
+      "field": "id",
+      "function": "count",
+      "filter": {
+        "_and": [
+          {
+            "_and": [
+              {
+                "date_created": {
+                  "_gte": "{{date_from}}"
+                }
+              },
+              {
+                "date_created": {
+                  "_lte": "{{date_to}}"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "date_created": "2025-10-15T14:31:04.965Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  },
+  {
+    "id": "b2be5f3d-0500-442d-a8c7-84a8d06c92e6",
+    "dashboard": "d283dd34-6886-4cfd-b1c5-744320562acc",
+    "name": "Open Tasks",
+    "icon": "notifications_active",
+    "color": "#18222F",
+    "show_header": true,
+    "note": null,
+    "type": "metric",
+    "position_x": 37,
+    "position_y": 16,
+    "width": 15,
+    "height": 5,
+    "options": {
+      "collection": "os_tasks",
+      "sortField": null,
+      "field": "id",
+      "function": "count",
+      "filter": {
+        "_and": [
+          {
+            "assigned_to": {
+              "id": {
+                "_eq": "{{user}}"
+              }
+            }
+          }
+        ]
+      },
+      "conditionalFormatting": [
+        {
+          "operator": ">=",
+          "value": 0,
+          "color": "#18222F"
+        }
+      ]
+    },
+    "date_created": "2025-10-15T14:31:05.066Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  },
+  {
+    "id": "b45fdb03-f5c4-414f-aeec-9f33f3e0340b",
+    "dashboard": "ea9c9be7-dcb3-4351-8a05-0d30c150bb64",
+    "name": "Average Rating Over Time",
+    "icon": "area_chart",
+    "color": "#2ECDA7",
+    "show_header": true,
+    "note": null,
+    "type": "time-series",
+    "position_x": 1,
+    "position_y": 30,
+    "width": 30,
+    "height": 10,
+    "options": {
+      "collection": "help_feedback",
+      "valueField": "rating",
+      "color": "#18222F",
+      "function": "avg",
+      "precision": "day",
+      "range": "auto",
+      "dateField": "date_created",
+      "decimals": 2,
+      "filter": {
+        "_and": [
+          {
+            "_and": [
+              {
+                "date_created": {
+                  "_gte": "{{date_from}}"
+                }
+              },
+              {
+                "date_created": {
+                  "_lte": "{{date_to}}"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "date_created": "2025-10-15T14:31:05.167Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  },
+  {
+    "id": "b6e4c3e3-655a-42e0-a72a-cb6906fae70f",
+    "dashboard": "d283dd34-6886-4cfd-b1c5-744320562acc",
+    "name": "User Activities",
+    "icon": "checklist",
+    "color": "#18222F",
+    "show_header": true,
+    "note": null,
+    "type": "list",
+    "position_x": 3,
+    "position_y": 48,
+    "width": 50,
+    "height": 20,
+    "options": {
+      "collection": "os_activities",
+      "sortField": "due_date",
+      "limit": 10,
+      "linkToItem": true,
+      "displayTemplate": "{{activity_type}} - {{name}} - {{due_date}} - {{organization.logo.$thumbnail}} {{organization.name}}",
+      "filter": {
+        "_and": [
+          {
+            "assigned_to": {
+              "id": {
+                "_eq": "{{user}}"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "date_created": "2025-10-15T14:31:05.269Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  },
+  {
+    "id": "b8f3d4ba-b3f6-4169-bcb8-1a8b44dacda0",
+    "dashboard": "0d85d827-a045-4dee-bcd3-d72d3a91cc52",
+    "name": "Won Deals",
+    "icon": "hotel_class",
+    "color": "#2ECDA7",
+    "show_header": true,
+    "note": null,
+    "type": "metric",
+    "position_x": 32,
+    "position_y": 16,
+    "width": 18,
+    "height": 7,
+    "options": {
+      "collection": "os_deals",
+      "sortField": null,
+      "function": "count",
+      "filter": {
+        "_and": [
+          {
+            "deal_stage": {
+              "name": {
+                "_contains": "Won"
+              }
+            }
+          }
+        ]
+      },
+      "field": "id",
+      "conditionalFormatting": [
+        {
+          "operator": ">=",
+          "value": 0,
+          "color": "#2ECDA7"
+        }
+      ],
+      "fontWeight": 400
+    },
+    "date_created": "2025-10-15T14:31:05.360Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  },
+  {
+    "id": "be40aae0-728b-4171-8c1e-34ca955f89eb",
+    "dashboard": "ea9c9be7-dcb3-4351-8a05-0d30c150bb64",
+    "name": "Average Rating",
+    "icon": "star",
+    "color": "#18222F",
+    "show_header": true,
+    "note": "Average rating across all articles. Rating is from 1 - 4. 1 being the lowest score. 4 being the highest.",
+    "type": "metric",
+    "position_x": 16,
+    "position_y": 14,
+    "width": 15,
+    "height": 6,
+    "options": {
+      "collection": "help_feedback",
+      "sortField": null,
+      "field": "rating",
+      "function": "avg",
+      "filter": {
+        "_and": [
+          {
+            "_and": [
+              {
+                "date_created": {
+                  "_gte": "{{date_from}}"
+                }
+              },
+              {
+                "date_created": {
+                  "_lte": "{{date_to}}"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "minimumFractionDigits": 2,
+      "maximumFractionDigits": 2
+    },
+    "date_created": "2025-10-15T14:31:05.461Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  },
+  {
+    "id": "c0b8367a-e18e-4f83-8cfe-a6fa92a17553",
+    "dashboard": "d283dd34-6886-4cfd-b1c5-744320562acc",
+    "name": "Tasks",
+    "icon": "task_alt",
+    "color": null,
+    "show_header": false,
+    "note": null,
+    "type": "label",
+    "position_x": 2,
+    "position_y": 16,
+    "width": 20,
+    "height": 5,
+    "options": {
+      "text": "Tasks",
+      "color": "#18222F",
+      "fontWeight": 500,
+      "fontSize": "48px"
+    },
+    "date_created": "2025-10-15T14:31:05.561Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  },
+  {
+    "id": "dd4f2150-6f2c-42ca-860e-6388ab34a951",
+    "dashboard": "0d85d827-a045-4dee-bcd3-d72d3a91cc52",
+    "name": "Open Deals",
+    "icon": null,
+    "color": "#18222F",
+    "show_header": true,
+    "note": null,
+    "type": "list",
+    "position_x": 2,
+    "position_y": 31,
+    "width": 48,
+    "height": 18,
+    "options": {
+      "collection": "os_deals",
+      "sortField": "close_date",
+      "limit": 10,
+      "linkToItem": true,
+      "displayTemplate": "{{deal_stage}}- {{name}} - {{organization}} - {{deal_value}} - {{owner}} - {{close_date}}",
+      "filter": {
+        "_and": [
+          {
+            "deal_stage": {
+              "name": {
+                "_ncontains": "Closed"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "date_created": "2025-10-15T14:31:05.661Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  },
+  {
+    "id": "e02ea3df-0463-453a-a47b-668e29281085",
+    "dashboard": "0d85d827-a045-4dee-bcd3-d72d3a91cc52",
+    "name": "Qualification Amount",
+    "icon": null,
+    "color": "#FFA439",
+    "show_header": false,
+    "note": null,
+    "type": "metric",
+    "position_x": 2,
+    "position_y": 23,
+    "width": 15,
+    "height": 6,
+    "options": {
+      "collection": "os_deals",
+      "sortField": null,
+      "function": "sum",
+      "filter": {
+        "_and": [
+          {
+            "deal_stage": {
+              "name": {
+                "_contains": "Qualification"
+              }
+            }
+          }
+        ]
+      },
+      "field": "deal_value",
+      "conditionalFormatting": [
+        {
+          "operator": ">=",
+          "value": 0,
+          "color": "#FFC23B"
+        }
+      ],
+      "prefix": "$",
+      "fontSize": "64px",
+      "fontWeight": 700
+    },
+    "date_created": "2025-10-15T14:31:05.761Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  },
+  {
+    "id": "e622d2c5-5e75-47fa-9d92-a7e112d57478",
+    "dashboard": "0d85d827-a045-4dee-bcd3-d72d3a91cc52",
+    "name": "Proposal",
+    "icon": null,
+    "color": "#FFA439",
+    "show_header": true,
+    "note": null,
+    "type": "metric",
+    "position_x": 17,
+    "position_y": 16,
+    "width": 15,
+    "height": 7,
+    "options": {
+      "collection": "os_deals",
+      "sortField": null,
+      "function": "count",
+      "filter": {
+        "_and": [
+          {
+            "deal_stage": {
+              "name": {
+                "_contains": "Proposal"
+              }
+            }
+          }
+        ]
+      },
+      "field": "id",
+      "conditionalFormatting": [
+        {
+          "operator": ">=",
+          "value": 0,
+          "color": "#FFA439"
+        }
+      ],
+      "fontWeight": 400
+    },
+    "date_created": "2025-10-15T14:31:05.864Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  },
+  {
+    "id": "e72af19e-3b25-42eb-a415-0c3d3b011749",
+    "dashboard": "0d85d827-a045-4dee-bcd3-d72d3a91cc52",
+    "name": null,
+    "icon": null,
+    "color": null,
+    "show_header": false,
+    "note": null,
+    "type": "label",
+    "position_x": 2,
+    "position_y": 2,
+    "width": 30,
+    "height": 6,
+    "options": {
+      "text": "Sales Pipeline",
+      "color": "#6644FF",
+      "fontWeight": 500,
+      "fontSize": "48px"
+    },
+    "date_created": "2025-10-15T14:31:05.963Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  },
+  {
+    "id": "ea78af5e-7a58-484f-85b2-e92bec6ed782",
+    "dashboard": "d283dd34-6886-4cfd-b1c5-744320562acc",
+    "name": "Total Tasks",
+    "icon": "avg_time",
+    "color": null,
+    "show_header": true,
+    "note": null,
+    "type": "metric",
+    "position_x": 32,
+    "position_y": 4,
+    "width": 24,
+    "height": 9,
+    "options": {
+      "collection": "os_tasks",
+      "field": "id",
+      "function": "count"
+    },
+    "date_created": "2025-10-15T14:31:06.065Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  },
+  {
+    "id": "f5f8724b-5881-418b-b613-544507755d29",
+    "dashboard": "0d85d827-a045-4dee-bcd3-d72d3a91cc52",
+    "name": "Won Amount",
+    "icon": "hotel_class",
+    "color": "#2ECDA7",
+    "show_header": false,
+    "note": null,
+    "type": "metric",
+    "position_x": 32,
+    "position_y": 23,
+    "width": 18,
+    "height": 6,
+    "options": {
+      "collection": "os_deals",
+      "sortField": null,
+      "function": "sumDistinct",
+      "filter": {
+        "_and": [
+          {
+            "deal_stage": {
+              "name": {
+                "_contains": "Won"
+              }
+            }
+          }
+        ]
+      },
+      "field": "deal_value",
+      "conditionalFormatting": [
+        {
+          "operator": ">=",
+          "value": 0,
+          "color": "#2ECDA7"
+        }
+      ],
+      "prefix": "$",
+      "notation": "compact",
+      "fontSize": "64px",
+      "fontWeight": 700
+    },
+    "date_created": "2025-10-15T14:31:06.166Z",
+    "user_created": "f8a33791-79ca-4375-a21e-1cde79b9758b"
+  }
+]

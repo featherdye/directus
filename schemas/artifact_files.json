@@ -1,0 +1,30 @@
+{
+  "collection": "artifact_files",
+  "options": {
+    "icon": "link",
+    "note": "M2M junction: artifact_versions ↔ directus_files",
+    "hidden": true
+  },
+  "fields": [
+    {
+      "field": "artifact_version_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "required": true,
+      "note": "Links to artifact_versions"
+    },
+    {
+      "field": "directus_files_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "required": true,
+      "note": "Links to directus_files"
+    },
+    {
+      "field": "sort",
+      "type": "integer",
+      "interface": "input",
+      "note": "Display order of files in artifact"
+    }
+  ]
+}

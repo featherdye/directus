@@ -1,0 +1,30 @@
+{
+  "collection": "task_artifacts",
+  "options": {
+    "icon": "link",
+    "note": "M2M junction: tasks ↔ artifact_versions",
+    "hidden": true
+  },
+  "fields": [
+    {
+      "field": "task_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "required": true,
+      "note": "Links to tasks"
+    },
+    {
+      "field": "artifact_version_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "required": true,
+      "note": "Links to artifact_versions"
+    },
+    {
+      "field": "sort",
+      "type": "integer",
+      "interface": "input",
+      "note": "Display order of artifacts in task"
+    }
+  ]
+}
