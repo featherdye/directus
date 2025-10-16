@@ -1,0 +1,48 @@
+# Node modules
+node_modules/
+.pnpm-store/
+
+# Database and uploads (will be mounted as volumes)
+database/
+uploads/
+
+# Git
+.git/
+.gitignore
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Documentation (not needed in container)
+*.md
+!README.md
+
+# Temporary files
+*.tmp
+*.temp
+
+# Frontend
+agency-os-frontend/
+
+# Backups
+backups/

@@ -1,0 +1,100 @@
+version: '3.8'
+
+services:
+  database:
+    image: postgres:16-alpine
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${DB_USER:-directus}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE:-directus}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-directus}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  cache:
+    image: redis:7-alpine
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  directus:
+    build: .
+    ports:
+      - "${PORT:-8055}:8055"
+    volumes:
+      - ./uploads:/directus/uploads
+      - ./extensions:/directus/extensions
+    depends_on:
+      database:
+        condition: service_healthy
+      cache:
+        condition: service_healthy
+    environment:
+      # Security
+      KEY: ${KEY}
+      SECRET: ${SECRET}
+      ACCESS_TOKEN_TTL: ${ACCESS_TOKEN_TTL:-15m}
+      REFRESH_TOKEN_TTL: ${REFRESH_TOKEN_TTL:-7d}
+      REFRESH_TOKEN_COOKIE_SECURE: ${REFRESH_TOKEN_COOKIE_SECURE:-true}
+      REFRESH_TOKEN_COOKIE_SAME_SITE: ${REFRESH_TOKEN_COOKIE_SAME_SITE:-lax}
+
+      # Admin Account
+      ADMIN_EMAIL: ${ADMIN_EMAIL}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+
+      # Database
+      DB_CLIENT: 'pg'
+      DB_HOST: 'database'
+      DB_PORT: '5432'
+      DB_DATABASE: ${DB_DATABASE:-directus}
+      DB_USER: ${DB_USER:-directus}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_SSL: ${DB_SSL:-false}
+
+      # Redis Cache
+      CACHE_ENABLED: 'true'
+      CACHE_STORE: 'redis'
+      REDIS_HOST: 'cache'
+      REDIS_PORT: '6379'
+
+      # CORS
+      CORS_ENABLED: ${CORS_ENABLED:-true}
+      CORS_ORIGIN: ${CORS_ORIGIN:-true}
+
+      # Rate Limiting
+      RATE_LIMITER_ENABLED: 'true'
+      RATE_LIMITER_STORE: 'redis'
+      RATE_LIMITER_DURATION: ${RATE_LIMITER_DURATION:-60}
+      RATE_LIMITER_POINTS: ${RATE_LIMITER_POINTS:-50}
+
+      # File Storage
+      STORAGE_LOCATIONS: 'local'
+      STORAGE_LOCAL_ROOT: './uploads'
+
+      # Email (optional - configure for production)
+      EMAIL_FROM: ${EMAIL_FROM:-noreply@example.com}
+      EMAIL_TRANSPORT: ${EMAIL_TRANSPORT:-sendmail}
+
+      # Logging
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      LOG_STYLE: ${LOG_STYLE:-pretty}
+
+      # General
+      PUBLIC_URL: ${PUBLIC_URL:-http://localhost:8055}
+      WEBSOCKETS_ENABLED: ${WEBSOCKETS_ENABLED:-true}
+
+      # Extensions
+      EXTENSIONS_AUTO_RELOAD: ${EXTENSIONS_AUTO_RELOAD:-false}
+
+    restart: unless-stopped
+
+volumes:
+  db_data:
